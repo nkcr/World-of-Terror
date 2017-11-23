@@ -26,11 +26,20 @@ var vm = new Vue({
 var slider = document.getElementById('slider');
 
 noUiSlider.create(slider, {
-  start: [20, 80],
+  start: [1970, 2016],
   connect: true,
   range: {
-    'min': 1,
-    'max': 170350
+    'min': 1970,
+    'max': 2016
+  },
+  tooltips: true,
+  format: wNumb({
+    decimals: 0
+  }),
+  pips: { // Show a scale with the slider
+    mode: 'steps',
+    stepped: true,
+    density: 4
   },
   step: 1
 });
