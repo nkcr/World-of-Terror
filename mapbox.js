@@ -1,9 +1,15 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
 // Create a map in the div #map
 var mapbox = L.mapbox.map('mapbox', 'mapbox.streets');
+var markers = null;
 
 function mapUpdate(dstart, dend, db) {
-  var markers = new L.MarkerClusterGroup();
+  if(markers) {
+    mapbox.removeLayer(markers);
+  }
+  markers = new L.MarkerClusterGroup({
+    maxClusterRadius: 40
+  });
 
   for (var i = 0; i < dend-dstart; i++) {
     var title = db[i][29];
