@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The HTML5 Herald</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+    <link href="nouislider.min.css" rel="stylesheet">
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css' rel='stylesheet' />
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>dstart: {{ dstart }}</p>
+      <p>dend: {{ dend }}</p>
+      <div id="slider"></div>
+      <div id="map"></div>
+      <div id="mapbox"></div>
+    </div>
+    <script src="papaparse.min.js"></script>
+    <script src="nouislider.min.js"></script>
+    <script src="script.js"></script>
+    <script src="map.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9q_VJhT_wDvTgy9Krbni2WcX8SvKZr7k&callback=initMap"></script>
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js'></script>
+    <script src="mapbox.js"></script>
+  </body>
+
+</html>
+
+<style>
+  #map, #mapbox {
+    height: 400px;
+    width: 100%;
+  }
+</style>
