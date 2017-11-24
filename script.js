@@ -1,4 +1,4 @@
-var vm = new Vue({
+vm = new Vue({
   el: '#app',
   data: {
     dstart: 1,
@@ -56,5 +56,9 @@ Papa.parse("db.csv", {
   complete: function (results, file) {
     console.log(results);
     vm.db = results.data;
+    if(mapLoaded) {
+      mapUpdate(1970, 2016, vm.db);      
+    }
+    dbLoaded = true;
   }
 });
