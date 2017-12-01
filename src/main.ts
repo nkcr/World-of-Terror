@@ -6,7 +6,7 @@ import Parser from "./parser/parser.js";
 declare var Promise: any;
 
 class Main {
-  
+
   constructor() {
 
     // Init Vue and Slider
