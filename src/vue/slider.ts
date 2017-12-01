@@ -6,7 +6,7 @@ export default class Slider {
 
   }
 
-  initSlider(dom_id: string, vm: any) {
+  initSlider(dom_id: string, vm: any, resolve: any, reject: any) {
     var slider: any;
     slider = document.getElementById(dom_id);
 
@@ -38,5 +38,6 @@ export default class Slider {
       vm.dstart = parseInt(slider.noUiSlider.get()[0]);
       vm.dend = parseInt(slider.noUiSlider.get()[1]);
     });
+    resolve("Ok init Slider");
   }
 }

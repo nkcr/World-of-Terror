@@ -1,7 +1,7 @@
 var Slider = (function () {
     function Slider() {
     }
-    Slider.prototype.initSlider = function (dom_id, vm) {
+    Slider.prototype.initSlider = function (dom_id, vm, resolve, reject) {
         var slider;
         slider = document.getElementById(dom_id);
         noUiSlider.create(slider, {
@@ -31,6 +31,7 @@ var Slider = (function () {
             vm.dstart = parseInt(slider.noUiSlider.get()[0]);
             vm.dend = parseInt(slider.noUiSlider.get()[1]);
         });
+        resolve("Ok init Slider");
     };
     return Slider;
 }());

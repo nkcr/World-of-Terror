@@ -10,7 +10,7 @@ var default_1 = (function () {
     default_1.prototype.mapUpdate = function () {
         this._map.mapUpdate(this._vm.dstart, this._vm.dend, this._vm.db);
     };
-    default_1.prototype.initVue = function (dom_el) {
+    default_1.prototype.initVue = function (dom_el, resolve, reject) {
         var me = this;
         this._vm = new Vue({
             el: dom_el,
@@ -37,6 +37,7 @@ var default_1 = (function () {
                 }
             }
         });
+        resolve("OK init Vue");
     };
     return default_1;
 }());

@@ -22,7 +22,7 @@ export default class {
     this._map.mapUpdate(this._vm.dstart, this._vm.dend, this._vm.db);
   }
 
-  initVue(dom_el: string) {
+  initVue(dom_el: string, resolve: any, reject: any) {
     var me = this;
     this._vm = new Vue({
       el: dom_el,
@@ -48,5 +48,6 @@ export default class {
         }
       }
     });
+    resolve("OK init Vue");
   }
 }
