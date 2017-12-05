@@ -19,13 +19,13 @@ class Main {
     let map = new Mapbox();
     const mapPromise = new Promise((resolve: any, reject: any) => {
       map.initMap(resolve, reject);
-    });
+   });
 
     // Load data
     let parser = new Parser("src/vendors/papaparse.min.js");
     const loadPromise = new Promise((resolve: any, reject: any) => {
       parser.loadData("../../assets/data/db.csv", vue.getVm(), resolve, reject);
-    });
+   });
 
     // Wait for map and data
     const donePromise = Promise.all([mapPromise, loadPromise]);
@@ -33,7 +33,7 @@ class Main {
       console.log("Everything loaded");
       vue.setMap(map);
       map.mapUpdate(1970, 2016, vue.getVm().db);
-    });
+   });
 
   }
 }
