@@ -18,7 +18,7 @@ var Mapbox = (function () {
         });
         for (var i = 0; i < db.length; i++) {
             if (db[i][1] >= dstart && db[i][1] <= dend) {
-                var title = db[i][29];
+                var attackType = db[i][29];
                 var latlng = new L.LatLng(db[i][13], db[i][14]);
                 var attack_icon_url = "assets/images/icons/" + db[i][28] + ".svg";
                 var myIcon = L.icon({
@@ -30,18 +30,19 @@ var Mapbox = (function () {
                     icon: myIcon
                 });
                 var gname = db[i][58];
+                var targetType = db[i][35];
                 var container = L.DomUtil.create('div');
-                var startBtn = this.createButton('Start from this location', container);
+                var icon_img = '<img src=' + attack_icon_url + ' height=25 width=25/>';
+                var content = '<table>' +
+                    '<tr><th>Perpetrator</th><th>Attack type</th><th>Target</th></tr>' +
+                    '<tr><td>' + gname + '</td><td>' + icon_img + '</td><td>' + targetType + '</td></tr>' +
+                    '</table>';
                 var popup = L.popup()
                     .setLatLng(latlng)
-                    .setContent('</div>Perpetrator Group Name:' + gname + '</div><p>' + startBtn)
+                    .setContent(content)
                     .openOn(this.mapbox);
                 marker.bindPopup(popup);
-                marker.setIcon(myIcon);
                 this.markers.addLayer(marker);
-                L.DomEvent.on(startBtn, 'click', function () {
-                    alert("---- startBtn -----");
-                });
             }
         }
         this.mapbox.addLayer(this.markers);

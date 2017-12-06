@@ -1,4 +1,6 @@
 db.csv
 *.swp
 src/**/*.js
+src/*.js
+src/*.map
 src/**/*.map

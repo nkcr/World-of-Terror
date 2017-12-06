@@ -2,7 +2,7 @@ declare var Papa: any;
 
 export default class Parser {
 
-    constructor(script_path: string) {
+  constructor(script_path: string) {
     Papa.SCRIPT_PATH = script_path;
   }
 
