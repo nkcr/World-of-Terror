@@ -49,10 +49,7 @@ export default class Mapbox {
                         '<tr><th>Perpetrator</th><th>Attack type</th><th>Target</th></tr>'+
                         '<tr><td>' + gname +'</td><td>' + icon_img +'</td><td>' + targetType + '</td></tr>'+
                         '</table>'
-        var popup = L.popup()
-            .setLatLng(latlng)
-            .setContent(content)
-            .openOn(this.mapbox);
+        var popup = L.popup().setLatLng(latlng).setContent(content);//.openOn(this.mapbox);
         marker.bindPopup(popup);
 
 
