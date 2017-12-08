@@ -31,7 +31,7 @@ class Main {
     // Init map
     let map = new Mapbox();
     const mapPromise = new Promise((resolve: any, reject: any) => {
-      map.initMap(resolve, reject);
+      map.initMap(resolve, reject, vue.getVm().db);
    });
 
     // Load data

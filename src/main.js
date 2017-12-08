@@ -17,7 +17,7 @@ var Main = (function () {
         });
         var map = new Mapbox();
         var mapPromise = new Promise(function (resolve, reject) {
-            map.initMap(resolve, reject);
+            map.initMap(resolve, reject, vue.getVm().db);
         });
         var parser = new Parser("src/vendors/papaparse.min.js");
         var loadPromise = new Promise(function (resolve, reject) {
