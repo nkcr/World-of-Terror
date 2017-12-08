@@ -60,6 +60,7 @@ export default class Mapbox {
            icon: myIcon
         });
 
+
         var popup = this.createPopup(db, i, attack_icon_url, latlng)
         marker.bindPopup(popup);
 
