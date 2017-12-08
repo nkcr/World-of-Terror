@@ -39,10 +39,11 @@ export default class Slider {
       step: 1
     });
 
-    /*slider.noUiSlider.on('end', function () {
-      vm.dstart = parseInt(slider.noUiSlider.get()[0]);
-      vm.dend = parseInt(slider.noUiSlider.get()[1]);
-   });*/
+    slider.noUiSlider.on('end', function () {
+        vm.dstart = parseInt(slider.noUiSlider.get()[0]);
+        vm.dend = parseInt(slider.noUiSlider.get()[1]);
+    });
+
     resolve("Ok init Slider");
   }
 }

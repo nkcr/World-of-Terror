@@ -92,8 +92,7 @@ export default class Mapbox {
 
      let popup = L.popup()
           .setLatLng(latlng)
-          .setContent(content)
-          .openOn(this.mapbox);
+          .setContent(content);
      return popup;
   }
 
