@@ -11,63 +11,65 @@ export default class Mapbox {
   }
 
   initMap(resolve: any, reject: any, db :Array<any>) {
+
+    console.log('------------initMap------------');
     L.mapbox.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
     // Create a map in the div #map
     this.mapbox = L.mapbox.map('mapbox', 'mapbox.streets');
     this.mapbox.on('load', function () {
       resolve("OK");
     });
-    let map = this.mapbox;
-    let myMarkers = this.markers;
-    this.mapbox.on('move', function () {
-      var inBounds = [];
-    // Get the map bounds - the top-left and bottom-right locations.
-      var bounds = map.getBounds();
-      console.log('--------');
-      console.log(bounds);
-       // For each marker, consider whether it is currently visible by comparing
-       // with the current map bounds.
-       /*myMarkers.eachLayer(function(marker) {
-            console.log(marker);
-       });*/
-
-    // Display a list of markers.
-    //console.log(inBounds.join('\n'));
-    });
   }
 
   mapUpdate(dstart :number, dend :number, db :Array<any>) {
-    if (this.markers) {
-      this.mapbox.removeLayer(this.markers);
+     console.log('------------mapUpdate------------');
+     if (this.markers) {
+        this.mapbox.removeLayer(this.markers);
+     }
+     this.markers = new L.MarkerClusterGroup({
+        maxClusterRadius: 40
+     });
+     for (var i = 0; i < db.length; i++) {
+        if (db[i][1] >= dstart && db[i][1] <= dend) {
+           var attackType =db[i][29];
+           var latlng = new L.LatLng(db[i][13], db[i][14]);
+
+           var attack_icon_url = "assets/images/icons/" + db[i][28] + ".svg";
+           var myIcon = L.icon({
+              iconUrl: attack_icon_url,
+              iconSize:     [38, 95], // size of the icon
+           });
+           var marker = L.marker(latlng, {
+              icon: myIcon,
+              title: i
+           });
+
+
+           var popup = this.createPopup(db, i, attack_icon_url, latlng)
+           marker.bindPopup(popup);
+
+
+           this.markers.addLayer(marker);
+        }
     }
-    this.markers = new L.MarkerClusterGroup({
-      maxClusterRadius: 40
-    });
+    let map = this.mapbox;
+    let markers = this.markers;
+    this.mapbox.on('move', function (object:any) {
+      var inBounds:any[] = []; // will contain every id of the visible attacks.
 
-    for (var i = 0; i < db.length; i++) {
-      if (db[i][1] >= dstart && db[i][1] <= dend) {
-        var attackType =db[i][29];
-        var latlng = new L.LatLng(db[i][13], db[i][14]);
+      // Get the map bounds - the top-left and bottom-right locations.
+      var bounds = map.getBounds();
+      markers.eachLayer(function(marker:any) {
+        // For each marker, consider whether it is currently visible by comparing
+        // with the current map bounds.
+        if (bounds.contains(marker.getLatLng())){
+            inBounds.push(marker.options.title);
+        }
+      });
+      console.log(inBounds.join('\n'));
+      console.log(db[inBounds[0]][29]);
 
-        var attack_icon_url = "assets/images/icons/" + db[i][28] + ".svg";
-        var myIcon = L.icon({
-          iconUrl: attack_icon_url,
-          iconSize:     [38, 95], // size of the icon
-          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-       });
-        var marker = L.marker(latlng, {
-           attackId:i,
-           icon: myIcon
-        });
-
-
-        var popup = this.createPopup(db, i, attack_icon_url, latlng)
-        marker.bindPopup(popup);
-
-
-        this.markers.addLayer(marker);
-      }
-    }
+     });
 
     this.mapbox.addLayer(this.markers);
   }

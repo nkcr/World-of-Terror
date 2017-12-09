@@ -5,5 +5,11 @@ export default class Info {
      }
 
      initInfo(resolve: any, reject: any) {
+
      }
+
+
+
+
+
  }
