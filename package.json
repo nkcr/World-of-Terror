@@ -1,0 +1,30 @@
+{
+  "name": "world-of-terror",
+  "version": "1.0.0",
+  "description": "A way of interactively visualize terrorist attacks from the 70's up until today",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nkcr/World-of-Terror.git"
+  },
+  "keywords": [
+    "Data",
+    "Visualization",
+    "Terrorist",
+    "Attacks",
+    "Chartjs",
+    "Mapbox"
+  ],
+  "author": "Matthias Christe, Noemien Kocher, Joao Ventura",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nkcr/World-of-Terror/issues"
+  },
+  "homepage": "https://github.com/nkcr/World-of-Terror#readme",
+  "dependencies": {
+    "@types/chartjs": "0.0.31"
+  }
+}
