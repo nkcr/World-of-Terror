@@ -1,12 +1,18 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "strictFunctionTypes": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
+    "moduleResolution": "node",
     "module": "es6"
   },
   "include": [
     "src/*" 
-  ]
+  ],
+  "baseUrl": "types",
+  "typeRoots":["types"]
 }

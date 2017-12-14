@@ -4,7 +4,11 @@
   "description": "A way of interactively visualize terrorist attacks from the 70's up until today",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "we are live!",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" "
   },
   "repository": {
     "type": "git",
@@ -25,6 +29,8 @@
   },
   "homepage": "https://github.com/nkcr/World-of-Terror#readme",
   "dependencies": {
-    "@types/chartjs": "0.0.31"
+    "concurrently": "^3.5.1",
+    "lite-server": "^2.3.0",
+    "typescript": "^2.6.2"
   }
 }
