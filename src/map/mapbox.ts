@@ -13,6 +13,11 @@ export default class Mapbox {
   initMap(resolve: any, reject: any, db :Array<any>) {
     var me = this;
 
+    var reset = document.getElementById("reset");
+    reset.onclick = function() {
+      me.mapbox.setView([-10, 1.757813], 1);
+    }
+
     console.log('------------initMap------------');
     L.mapbox.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
     // Create a map in the div #map
