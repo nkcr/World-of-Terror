@@ -37,6 +37,7 @@ export default class Mapbox {
      this.markers = new L.MarkerClusterGroup({
         maxClusterRadius: 40
      });
+     let map = this.mapbox;
      for (var i = 0; i < db.length; i++) {
         if (db[i][1] >= dstart && db[i][1] <= dend) {
            var attackType =db[i][29];
@@ -55,12 +56,14 @@ export default class Mapbox {
 
            var popup = this.createPopup(db, i, attackType, attack_icon_url, latlng, success)
            marker.bindPopup(popup);
-
+           marker.on('click', function (e:any) {
+             map.setView(e.target.getLatLng(),map.getZoom());
+          });
 
            this.markers.addLayer(marker);
         }
     }
-    let map = this.mapbox;
+
     let markers = this.markers;
     this.mapbox.on('move', function (object:any) {
       var inBounds:any[] = []; // will contain every id of the visible attacks.
@@ -82,6 +85,7 @@ export default class Mapbox {
     this.mapbox.addLayer(this.markers);
   }
 
+
   createPopup(db :Array<any>, i:number,  attackType:string, attack_icon_url:string, latlng:any, success:any){
      let summary:string = db[i][18];
 
@@ -95,12 +99,8 @@ export default class Mapbox {
      let icon_img = '<img src=' + attack_icon_url  + ' height=35 width=35/>';
      let success_img = '<img src=' + success_url +  ' height=25 width=25/>';
      let content =   '<h2>' + icon_img + ' ' + attackType + '</h2>' +
-                     /*'<table>' +
-                     '<tr><th>Perpetrator</th><th>Success</th><th>Target</th></tr>'+
-                     '<tr><td>' + gname +'</td><td>' + success_img +'</td><td>' + targetType + '</td></tr>'+
-                     '</table>' +*/
                      '<table align=center>' +
-                     '<tr><td align=center>' + dateOfAttack +'</td><td align=center>' + '<strong>Succes </strong>' + success_img +'</td></tr>'+
+                     '<tr><td align=center>' + dateOfAttack +'</td><td align=center>' + '<strong>Success </strong>' + success_img +'</td></tr>'+
                      '<tr><td align=center>' + '<strong>Perpetrator</strong><br>' + gname +'</td><td align=center>' + '<strong>Target</strong><br>' + targetType +'</td></tr>'+
                      '</table>' +
                      '<hr>' +
@@ -111,5 +111,6 @@ export default class Mapbox {
           .setContent(content);
      return popup;
   }
+
 
 }
