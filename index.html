@@ -17,6 +17,7 @@
     <script src="src/vendors/nouislider.min.js"></script>
     <script src="src/vendors/papaparse.min.js"></script>
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.min.js"></script>
 
   </head>
 
@@ -26,19 +27,24 @@
       <div class="tools">
         <div id="slider"></div>
      </div>
-
          <div class="row">
-            <div id="mapbox"/></div>
+           
+            <div id="mapbox"></div>
+            <!--
+                Infos
+            -->
             <div id="info">
                 <h1>That's where I have been...</h1>
                 <p class="visible-lg visible-md">Click on places on the map to get some details.</p>
                 <p class="visible-sm visible-xs">Click on places on the map to get some details.</p>
-
-
-
-                <div id="statistiques">
-                </div>
-
+                <!--
+                  Statistiques : start
+                -->
+                <canvas id="statistiques">
+                </canvas>
+                <!--
+                  Statistiques : end
+                -->
 
                 <div class="container-fluid">
 
