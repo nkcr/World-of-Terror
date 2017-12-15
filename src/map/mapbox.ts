@@ -11,12 +11,15 @@ export default class Mapbox {
   }
 
   initMap(resolve: any, reject: any, db :Array<any>) {
+    var me = this;
 
     console.log('------------initMap------------');
     L.mapbox.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
     // Create a map in the div #map
     this.mapbox = L.mapbox.map('mapbox', 'mapbox.streets');
     this.mapbox.on('load', function () {
+      me.mapbox.setView([-10, 1.757813], 1);
+      L.mapbox.styleLayer("mapbox://styles/nkcr/citu52wjb001y2irqtlt8ki9e").addTo(me.mapbox);
       resolve("OK");
     });
   }
