@@ -5,6 +5,7 @@ import Mapbox from "./map/mapbox.js";
 import Parser from "./parser/parser.js";
 import Overlay from "./overlay/overlay.js";
 import Stats from "./stats/stats.js";
+import Panels from "./panels/panels.js"
 
 declare var Promise: any;
 
@@ -52,6 +53,9 @@ class Main {
       map.mapUpdate(1970, 2020, vue.getVm().db);
       stats.initStats("statistiques", vue.getVm().db);
    });
+
+   // Init panels
+   let panels = new Panels();
 
   }
 }

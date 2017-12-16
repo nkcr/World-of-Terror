@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="assets/stylesheets/bootstrap/bootstrap.css">
 
     <link rel="stylesheet" href="assets/stylesheets/main.css">
-    <link rel="stylesheet" href="assets/stylesheets/panel1.css">
+    <link rel="stylesheet" href="assets/stylesheets/panels.css">
+    <link rel="stylesheet" href="assets/stylesheets/panel-1.css">
     <link href="assets/stylesheets/vendors/nouislider.min.css" rel="stylesheet">
     <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
@@ -42,53 +43,59 @@
 
         <div class="container-fluid">
 
-          <section id="panel1">
-
-            <div class="legends">
-              <div class="legend">
-                <img src="assets/images/icons/1_1.png" height=40 width=40/>
-                <p>Assassination</p>
-              </div>
-              <div class="legend">
-                <img src="assets/images/icons/2_1.png" height=40 width=40/>
-                <p>Armed Assault</p>
-              </div>
-              <div class="legend">
-                <img src="assets/images/icons/3_1.png" height=40 width=40/>
-                <p>Bombing/Explosion</p>
-              </div>
-              <div class="legend">
-                <img src="assets/images/icons/4_1.png" height=40 width=40/>
-                <p>Hijacking</p>
-              </div>
-              <div class="legend">
-                <img src="assets/images/icons/5_1.png" height=40 width=40/>
-                <p>Hostage taking (barricade incident)</p>
-              </div>
-              <div class="legend">
-                <img src="assets/images/icons/6_1.png" height=40 width=40/>
-                <p>Hostage taking (kidnaping)</p>
-              </div>
-              <div class="legend">
-                <img src="assets/images/icons/7_1.png" height=40 width=40/>
-                <p>Facility / Infrastructure attack</p>
-              </div>
-              <div class="legend">
-                <img src="assets/images/icons/8_1.png" height=40 width=40/>
-                <p>Unarmed assault</p>
-              </div>
-              <div class="legend">
-                <img src="assets/images/icons/9_1.png" height=40 width=40/>
-                <p>Unkown</p>
-              </div>
+          <div class="panels">
+            <div class="panel-selection">
+              <button class="current" id="btn-panel-1" data-panel="1">Panel1</button><button id="btn-panel-2" data-panel="2">Panel2</button>
             </div>
+            <section id="panel-1">
 
-          </section>
+              <div class="legends">
+                <div class="legend">
+                  <img src="assets/images/icons/1_1.png" height=40 width=40/>
+                  <p>Assassination</p>
+                </div>
+                <div class="legend">
+                  <img src="assets/images/icons/2_1.png" height=40 width=40/>
+                  <p>Armed Assault</p>
+                </div>
+                <div class="legend">
+                  <img src="assets/images/icons/3_1.png" height=40 width=40/>
+                  <p>Bombing/Explosion</p>
+                </div>
+                <div class="legend">
+                  <img src="assets/images/icons/4_1.png" height=40 width=40/>
+                  <p>Hijacking</p>
+                </div>
+                <div class="legend">
+                  <img src="assets/images/icons/5_1.png" height=40 width=40/>
+                  <p>Hostage taking (barricade incident)</p>
+                </div>
+                <div class="legend">
+                  <img src="assets/images/icons/6_1.png" height=40 width=40/>
+                  <p>Hostage taking (kidnaping)</p>
+                </div>
+                <div class="legend">
+                  <img src="assets/images/icons/7_1.png" height=40 width=40/>
+                  <p>Facility / Infrastructure attack</p>
+                </div>
+                <div class="legend">
+                  <img src="assets/images/icons/8_1.png" height=40 width=40/>
+                  <p>Unarmed assault</p>
+                </div>
+                <div class="legend">
+                  <img src="assets/images/icons/9_1.png" height=40 width=40/>
+                  <p>Unkown</p>
+                </div>
+              </div>
 
-          <section id="panel2">
+            </section>
 
-          </section>
-
+            <section id="panel-2">
+              blsblsd<br>
+              dsdfsdfsdfsdf<br>
+              sdfsdfsf
+            </section>
+          </div>
         </div>
       </div>
     </div>
