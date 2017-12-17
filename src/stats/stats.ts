@@ -7,10 +7,10 @@ export default class Stats {
     segmentStrokeColor: "#fff",
     segmentStrokeWidth: 2,
     percentageInnerCutout: 50,
-    animationSteps: 100,
-    animationEasing: "easeOutBounce",
-    animateRotate: true,
-    animateScale: false,
+    animationSteps: 20,
+    animationEasing: "easeInOutElastic",
+    animateRotate: false,
+    animateScale: true,
     legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\" style=\"list-style:none;\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>;color:white\"><%if(segments[i].label){%><%=segments[i].label%><%}%></span></li><%}%></ul>"
 };
     canvasTargets:any;
@@ -25,6 +25,10 @@ export default class Stats {
     PieTerr:CircularInstance;
     TerrLabel: HTMLElement;
 
+    TerrGroupData:CircularChartData[];
+    oldTerrData:CircularChartData[];
+    TargetData:CircularChartData[];
+    oldTargData:CircularChartData[];
 
     db:any;
     isInit:boolean;
@@ -42,20 +46,20 @@ export default class Stats {
             console.log(this.db);
         }
         
-        if(this.pieTarg!=null)
+       /* if(this.pieTarg!=null)
         {
             this.pieTarg.clear();
-            this.pieTarg.destroy();
+            //this.pieTarg.destroy();
             this.TargetsLabel.innerHTML="";
 
         }
         if(this.PieTerr!=null)
         {
             this.PieTerr.clear();
-            this.PieTerr.destroy();
+            //this.PieTerr.destroy();
             this.TerrLabel.innerHTML="";
 
-        }
+        }*/
 
         var filteredTargets=[];
         var filteredTerrGroups=[];
@@ -112,8 +116,7 @@ export default class Stats {
                 }
                 nbOccurrenceTarget[i]=curOccurrences;
             }
-
-            var TargetData:CircularChartData[]=[];
+            this.TargetData=[];
             for(var i=0;i<targetLabels.length;i++)
             {
                 var curTarget: CircularChartData={
@@ -123,11 +126,28 @@ export default class Stats {
                     highlight:"hsl("+(i/targetLabels.length*360)+",50%,70%)"
                 }
 
-                TargetData.push(curTarget);
+                this.TargetData.push(curTarget);
             }
-            this.pieTarg = this.pieChartTarg.Doughnut(TargetData,this.partialOpts);
-            var pieTargLegend=this.pieTarg.generateLegend();
-            this.TargetsLabel.innerHTML=pieTargLegend;
+
+            if(this.oldTargData==null)
+            {
+               this.pieTarg=this.pieChartTarg.Doughnut(this.TargetData, this.partialOpts);
+               var pieTargLegend=this.pieTarg.generateLegend();
+               this.TargetsLabel.innerHTML=pieTargLegend; 
+            }
+            else
+            {
+                if(JSON.stringify(this.oldTargData)!=JSON.stringify(this.TargetData))
+                {
+                    //console.log("old target data:"+JSON.stringify(this.oldTargData),"\r\nnew target data:"+JSON.stringify(this.TargetData));
+                    this.pieTarg.clear();
+                    this.pieTarg.destroy();
+                    this.pieTarg=this.pieChartTarg.Doughnut(this.TargetData, this.partialOpts);
+                    var pieTargLegend=this.pieTarg.generateLegend();
+                    this.TargetsLabel.innerHTML=pieTargLegend; 
+                }
+            }
+            this.oldTargData=this.TargetData;
         }
         else
         {
@@ -151,7 +171,7 @@ export default class Stats {
                 nbOccurrenceTerrGroup[i]=curOccurrences;
             }
 
-            var TerrGroupData:CircularChartData[]=[];
+            this.TerrGroupData=[];
             for(var i=0;i<terrGroupLabels.length;i++)
             {
                 var curTerrGroup: CircularChartData = {
@@ -160,13 +180,27 @@ export default class Stats {
                     color:"hsl("+(i/terrGroupLabels.length*360)+",50%,50%)",
                     highlight:"hsl("+(i/terrGroupLabels.length*360)+",50%,70%)"
                 }
-                TerrGroupData.push(curTerrGroup);
+                this.TerrGroupData.push(curTerrGroup);
             }
-            this.PieTerr=this.pieChartTerr.Doughnut(TerrGroupData, this.partialOpts);
 
-            var PieTerrLegend=this.PieTerr.generateLegend();
-            console.log(PieTerrLegend);
-            this.TerrLabel.innerHTML=PieTerrLegend;
+            if(this.oldTerrData==null)
+            {
+                this.PieTerr=this.pieChartTerr.Doughnut(this.TerrGroupData,this.partialOpts);
+                var pieTerrLegend=this.PieTerr.generateLegend();
+                this.TerrLabel.innerHTML=pieTerrLegend;
+            }
+            else
+            {
+                 if(JSON.stringify(this.oldTerrData)!=JSON.stringify(this.TerrGroupData))
+                {
+                    this.PieTerr.clear();
+                    this.PieTerr.destroy();
+                    this.PieTerr=this.pieChartTerr.Doughnut(this.TerrGroupData,this.partialOpts);
+                    var pieTerrLegend=this.PieTerr.generateLegend();
+                    this.TerrLabel.innerHTML=pieTerrLegend;
+                }
+            }
+            this.oldTerrData=this.TerrGroupData;
         }
         else
         {
