@@ -82,7 +82,7 @@ export default class Mapbox {
             inBounds.push(marker.options.title);
         }
       });
-      stats.updateStats("statistiques",inBounds);
+      stats.updateStats(inBounds);
      });
     this.mapbox.addLayer(this.markers);
   }

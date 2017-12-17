@@ -51,7 +51,7 @@ class Main {
       console.log("Everything loaded");
       vue.setMap(map);
       map.mapUpdate(1970, 2020, vue.getVm().db);
-      stats.initStats("statistiques", vue.getVm().db);
+      stats.initStats(vue.getVm().db);
    });
 
    // Init panels
