@@ -3,6 +3,22 @@ body, html {
     min-height: 100%;
   }
 
+  .information_title {
+      margin-top: 20px;
+      display: block;
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: bold;
+  }
+
+  #marker_info_table {
+      border-collapse: separate;
+  }
+
+   .description_marker {
+      margin-top: 5px;
+   }
+
 button#reset {
   position: absolute;
   z-index: 1;
@@ -86,4 +102,5 @@ button#reset {
     height: 50%;
     width: 95%;
   }
+
 }
