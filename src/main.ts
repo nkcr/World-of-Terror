@@ -18,7 +18,7 @@ class Main {
     var uuid1 = overlay.addEvent("Loading view...");
 
     // Init Vue and Slider
-    var uuid2 = overlay.addEvent("Init vue...");
+    var uuid2 = overlay.addEvent("Init vue.js...");
     let vue = new Vue();
     let slider = new Slider();
     let stats = new Stats();
@@ -42,7 +42,7 @@ class Main {
     var uuid4 = overlay.addEvent("Init map...");
     let map = new Mapbox(stats, info);
     const mapPromise = new Promise((resolve: any, reject: any) => {
-      map.initMap(resolve, reject, vue.getVm().db);
+      map.initMap(resolve, reject, vue.getVm().db, overlay);
     });
     mapPromise.then(function() {overlay.removeEvent(uuid4);});
 

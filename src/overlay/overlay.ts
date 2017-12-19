@@ -24,8 +24,10 @@ export default class Overlay {
   }
 
   removeEvent(uuid: string) {
-    let text = document.createTextNode("OK"); 
-    document.getElementById(uuid).appendChild(text);
+    let text = document.createTextNode("OK");
+    setTimeout( ()=> {
+      document.getElementById(uuid).appendChild(text);
+    }, 700);
     if(this._events_counter > 0) {
       this._events_counter = this._events_counter - 1;
     }
@@ -34,7 +36,7 @@ export default class Overlay {
       setTimeout( ()=> {
         this._overlay_text.innerHTML='';
         this._overlay_frame.style.display = "none";
-      }, 1500);
+      }, 1000);
     }
   }
 
