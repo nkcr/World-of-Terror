@@ -28,14 +28,14 @@ export default class {
     this._vm = new Vue({
       el: dom_el,
       data: {
-        dstart: 1,
-        dend: 100,
+        dstart: 1970,
+        dend: 2020,
         filters_perpetrators: [],
       },
       methods: {
         collection: function ():any {
-          if (this.db != undefined) {
-            return this.db[this.dstart][0];
+          if (me._vm.db != undefined) {
+            return me._vm.db[me._vm.dstart][0];
           } else {
             return "null";
           }

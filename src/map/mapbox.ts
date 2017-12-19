@@ -40,7 +40,7 @@ export default class Mapbox {
   }
 
   mapUpdate(dstart :number, dend :number, db :Array<any>, filters_perpetrators: Array<string>) {
-     let uuid = this.overlay.addEvent("Updating map...");
+     const uuid = this.overlay.addEvent("Updating map...");
      console.log('------------mapUpdate------------');
      console.log(filters_perpetrators);
      console.log(filters_perpetrators.length);

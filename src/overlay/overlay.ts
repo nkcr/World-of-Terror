@@ -10,8 +10,10 @@ export default class Overlay {
   }
 
   addEvent(description: string):string {
+    //console.log("(add) Number of events: ", this._events_counter);
     if(this._events_counter == 0) {
-      this._overlay_frame.style.display = "block";
+      this._overlay_frame.style.visibility = "visible";
+      this._overlay_frame.style.opacity = "1";
     }
     const uuid = this.guidGenerator();
     const node = document.createElement("P");
@@ -24,18 +26,20 @@ export default class Overlay {
   }
 
   removeEvent(uuid: string) {
+    //console.log("(remove) Number of events: ", this._events_counter, ", id: ", uuid);
     let text = document.createTextNode("OK");
     setTimeout( ()=> {
-      document.getElementById(uuid).appendChild(text);
+      let node = document.getElementById(uuid);
+      if(node != null) { node.appendChild(text) }
     }, 700);
-    if(this._events_counter > 0) {
+    //if(this._events_counter > 0) {
       this._events_counter = this._events_counter - 1;
-    }
-    console.log("Number of events: ", this._events_counter);
+    //}
     if(this._events_counter == 0) {
       setTimeout( ()=> {
         this._overlay_text.innerHTML='';
-        this._overlay_frame.style.display = "none";
+        this._overlay_frame.style.visibility = "hidden";
+        this._overlay_frame.style.opacity = "0";
       }, 1000);
     }
   }

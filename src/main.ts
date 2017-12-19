@@ -60,7 +60,7 @@ class Main {
       overlay.removeEvent(uuid1);
       console.log("Everything loaded");
       vue.setMap(map);
-      map.mapUpdate(1970, 2020, vue.getVm().db, vue.getVm().filters_perpetrators);
+      map.mapUpdate(vue.getVm().dstart, vue.getVm().dend, vue.getVm().db, vue.getVm().filters_perpetrators);
       stats.initStats(vue.getVm().db);
       info.initInfo(vue.getVm().db);
       let filters = new Filters(vue.getVm(), vue.getVm().db, info);

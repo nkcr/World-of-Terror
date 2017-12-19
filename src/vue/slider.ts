@@ -39,7 +39,7 @@ export default class Slider {
       step: 1
     });
 
-    slider.noUiSlider.on('end', function () {
+    slider.noUiSlider.on('change', function () {
         vm.dstart = parseInt(slider.noUiSlider.get()[0]);
         vm.dend = parseInt(slider.noUiSlider.get()[1]);
     });
