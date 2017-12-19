@@ -26,13 +26,15 @@ export default class Info {
 
      updateInfo(i:number){
         console.log("Info - updateInfo");
-
         let attackType = this.db[i][29];
+        let success = this.db[i][26];
+        var attack_icon_url = "assets/images/icons/" + this.db[i][28] + "_" + success + ".png";
+        let icon_img = '<img src=' + attack_icon_url  + ' height=35 width=35/> ' + attackType;
         let dateOfAttack:string = this.db[i][1] + '/' + this.db[i][2] + '/' + this.db[i][3];
         let gname:string = this.db[i][58];
         let targetType:string = this.db[i][35];
 
-        let success_url =  "assets/images/success/" + this.db[i][26] + ".png";
+        let success_url =  "assets/images/success/" + success + ".png";
         let success_img = '<img src=' + success_url +  ' height=25 width=25/>';
 
         let summary:string = this.db[i][18];
@@ -40,12 +42,11 @@ export default class Info {
          summary = 'Sorry, no summary is available.';
         }
 
-        this.info_attack_name.innerHTML = attackType;
+        this.info_attack_name.innerHTML = icon_img;
         this.info_attack_date.innerHTML = dateOfAttack;
         this.info_attack_success.innerHTML = success_img;
         this.info_attack_perpetrator.innerHTML = gname
         this.info_attack_target.innerHTML = targetType;
-
         this.info_attack_description.innerHTML = summary;
      }
 

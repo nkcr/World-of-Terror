@@ -15,8 +15,6 @@ export default class Panels {
       document.getElementById("panel-2")
     ];
 
-    console.log("sdf");
-
     for (var i = 0; i < this._panel_buttons.length; i++) {
       var me = this;
       this._panel_buttons[i].onclick = function () {

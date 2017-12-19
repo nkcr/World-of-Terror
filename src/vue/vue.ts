@@ -6,6 +6,7 @@ export default class {
   _vm: any;
   _map: Mapbox;
 
+
   constructor() {
 
   }
@@ -29,6 +30,7 @@ export default class {
       data: {
         dstart: 1,
         dend: 100,
+
       },
       methods: {
         collection: function ():any {

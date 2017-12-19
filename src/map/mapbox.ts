@@ -36,7 +36,7 @@ export default class Mapbox {
     });
   }
 
-  mapUpdate(dstart :number, dend :number, db :Array<any>) {
+  mapUpdate(dstart :number, dend :number, db :Array<any>, ) {
      console.log('------------mapUpdate------------');
      if (this.markers) {
         this.mapbox.removeLayer(this.markers);
