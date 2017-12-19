@@ -26,7 +26,7 @@
   </head>
 
   <body>
-    <img src="assets/images/zoompls.png" id="zoomIn" style="display:none"/>
+    <img onclick="ZoomIn();" src="assets/images/zoompls.png" id="zoomIn" style="display:none"/>
     <div id="overlay">
       <img src="assets/images/loading.svg">
       <div id="overlay-text">
@@ -88,27 +88,38 @@
                   </table>
                   <hr align="center" width="100%" color="#BDBDBD"/>
                   <p id="info_attack_description" class="description_marker">
-                   -
+                   
                   </p>
               </div>
 
-              <h2>Attack Types</h2>
-              <canvas id="attack-types" height="240" width="500">
-              </canvas>
-              <div id="attack_legend">
+              <h2 style="text-align: center;">Attack Types</h2>
+              <div id="div-attack-types">
+                <canvas id="attack-types" height="200" width="200">
+                </canvas>
+                <div id="attack_legend"  width="200" height="240">
+                </div>
+              </div>
+              
+              <hr>
+
+              <h2 style="text-align: center;"> Terrorist Groups</h2>
+              <div id="div-terrorist-groups">
+                <canvas id="terrorist-groups"   height="200" width="200">
+                </canvas>
+                <div id="terrorist_legend"  width="200" height="240">
+                </div>
+              </div>
+              
+              <hr>
+              <h2 style="text-align: center;">Targets</h2>
+              <div id="div-targets">
+                <canvas id="targets"  height="200" width="200">
+                </canvas>
+                <div id="targets_legend"   width="200">
+                </div>
               </div>
 
-              <h2>Terrorist Groups</h2>
-              <canvas id="terrorist-groups" height="240" width="500">
-              </canvas>
-              <div id="terrorist_legend">
-              </div>
 
-              <h2>Targets</h2>
-              <canvas id="targets" height="240" width="500">
-              </canvas>
-              <div id="targets_legend">
-              </div>
             </section>
             <section id="panel-2">
                <div id="infoMarker">
