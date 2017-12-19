@@ -116,4 +116,11 @@ button#reset {
     width: 95%;
   }
 
+
 }
+#div-attack-types,#div-terrorist-groups,#div-targets{
+    display:flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items:center;
+  } 

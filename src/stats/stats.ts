@@ -1,10 +1,11 @@
 /**
  * The stats class displays the charts in the right part of the view. It uses ChartJS 1.1.1
- * Thi class can be improved by reducing  the duplicate code, possibly by creating a RetriveAndDisplayChart function.
- * RetrieveAndDisplayChart(column:number, canvas:string, legend:string,maxLabels=20)
+ * Thi class can be improved by reducing  the duplicate code, possibly by creating a RetrieveDataAndDisplayChart function.
+ * RetrieveDataAndDisplayChart(column:number, canvas:string, legend:string, maxLabels:number=20)
+ * Second improvement would be the usage of ChartJS 2 which brings more possibilities to the table
  */
 
-var errMess: string = "<p style=\"text-align:center;\">Too many labels to display this chart correctly, zoom in a bit!</p>";
+var errMess: string = "<p style=\"text-align:center;\">Too many labels to display this chart correctly... Zoom in a bit!</p>";
 var zoomInImage : HTMLImageElement;
 export default class Stats {
     //Type = 29 ,Target = 35, Group = 58
@@ -162,7 +163,7 @@ export default class Stats {
         /**
          * TARGETS
          */
-        if(nbTargets<20)
+        if(nbTargets<15)
         {
             //creating array with number of occurences per target
             var nbOccurrenceTarget=[];
@@ -225,7 +226,7 @@ export default class Stats {
         /**
          * TERRORIST GROUPS
          */
-        if(nbTerrGroups<20)
+        if(nbTerrGroups<15)
         {
             //creating array with number of occurrences per terrorist group
             var nbOccurrenceTerrGroup=[];
