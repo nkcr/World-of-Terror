@@ -47,7 +47,7 @@ class Main {
     mapPromise.then(function() {overlay.removeEvent(uuid4);});
 
     // Load data
-    var uuid5 = overlay.addEvent("Load data...");
+    var uuid5 = overlay.addEvent("Loading data...");
     let parser = new Parser("src/vendors/papaparse.min.js");
     const loadPromise = new Promise((resolve: any, reject: any) => {
       parser.loadData("../../assets/data/db.csv", vue.getVm(), resolve, reject);
