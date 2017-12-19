@@ -8,7 +8,7 @@ export default class Filters {
   _db: any;
 
   constructor(vm:any, db:any, info: Info) {
-    this._info = info;
+   /* this._info = info;
     this._filter_perpetrator = document.getElementById("btn-filter_perpetrator");
 
     var me_info = this._info;
@@ -19,7 +19,7 @@ export default class Filters {
         var gname = me_db[me_info.current_marker_id][58];
         vm.filters_perpetrators = [gname];
       }
-    }
+   }*/
 
   }
 }

@@ -1,6 +1,7 @@
 body, html {
     position: relative;
     min-height: 100%;
+    overflow: hidden;
   }
 
   .information_title {
@@ -123,4 +124,4 @@ button#reset {
     flex-direction: row;
     justify-content:flex-start;
     align-items:center;
-  } 
+  }
