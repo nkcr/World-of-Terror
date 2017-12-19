@@ -1,7 +1,7 @@
 export default class Stats {
     //Target = 35, Group = 58
 
-    
+
     partialOpts: PieChartOptions = {
     segmentShowStroke: true,
     segmentStrokeColor: "#fff",
@@ -32,20 +32,20 @@ export default class Stats {
 
     db:any;
     isInit:boolean;
-    
+
     constructor() {
         this.isInit=false;
     }
-    //Afficher des stats, 
+    //Afficher des stats,
     //Selon le nombre de labels afficher d'autres informations
     updateStats(attacks: any)
     {
         if(!this.isInit)return;
         else{
-            console.log("is init!");
-            console.log(this.db);
+            //console.log("is init!");
+            //console.log(this.db);
         }
-        
+
        /* if(this.pieTarg!=null)
         {
             this.pieTarg.clear();
@@ -99,7 +99,7 @@ export default class Stats {
 
         var nbTargets:number= targetLabels.length;
         var nbTerrGroups:number=terrGroupLabels.length;
-        
+
         if(nbTargets<20)
         {
             //creating array with number of occurences per target
@@ -133,7 +133,7 @@ export default class Stats {
             {
                this.pieTarg=this.pieChartTarg.Doughnut(this.TargetData, this.partialOpts);
                var pieTargLegend=this.pieTarg.generateLegend();
-               this.TargetsLabel.innerHTML=pieTargLegend; 
+               this.TargetsLabel.innerHTML=pieTargLegend;
             }
             else
             {
@@ -144,7 +144,7 @@ export default class Stats {
                     this.pieTarg.destroy();
                     this.pieTarg=this.pieChartTarg.Doughnut(this.TargetData, this.partialOpts);
                     var pieTargLegend=this.pieTarg.generateLegend();
-                    this.TargetsLabel.innerHTML=pieTargLegend; 
+                    this.TargetsLabel.innerHTML=pieTargLegend;
                 }
             }
             this.oldTargData=this.TargetData;
@@ -152,7 +152,7 @@ export default class Stats {
         else
         {
 
-        } 
+        }
 
         if(nbTerrGroups<20)
         {
@@ -215,7 +215,7 @@ export default class Stats {
 
         this.canvasTerrGroups = <HTMLCanvasElement>document.getElementById("terrorist-groups");
         this.ctxTerrGroups = this.canvasTerrGroups.getContext('2d');
-        
+
         this.pieChartTarg=new Chart(this.ctxTargets);
         this.pieChartTerr=new Chart(this.ctxTerrGroups);
 

@@ -1,10 +1,10 @@
 import Vue from "./vue/vue.js";
 import Slider from "./vue/slider.js";
-import Info from "./vue/info.js";
 import Mapbox from "./map/mapbox.js";
 import Parser from "./parser/parser.js";
 import Overlay from "./overlay/overlay.js";
 import Stats from "./stats/stats.js";
+import Info from "./info/info.js";
 import Panels from "./panels/panels.js"
 
 declare var Promise: any;
@@ -21,6 +21,7 @@ class Main {
     let vue = new Vue();
     let slider = new Slider();
     let stats = new Stats();
+    let info = new Info();
     let p1 = new Promise((resolve: any, reject: any) => {
       vue.initVue("#app", resolve, reject);
     });
@@ -31,14 +32,14 @@ class Main {
       slider.initSlider("slider", vue.getVm(), resolve, reject);
     });
     p2.then(function() {overlay.removeEvent(uuid3);});
-    
+
    /*let p3 = new Promise((resolve: any, reject: any) => {
       stats.initStats("statistiques", vue.getVm().db,resolve, reject);
    });*/
 
     // Init map
     var uuid4 = overlay.addEvent("Init map...");
-    let map = new Mapbox(stats);
+    let map = new Mapbox(stats, info);
     const mapPromise = new Promise((resolve: any, reject: any) => {
       map.initMap(resolve, reject, vue.getVm().db);
     });
@@ -60,6 +61,7 @@ class Main {
       vue.setMap(map);
       map.mapUpdate(1970, 2020, vue.getVm().db);
       stats.initStats(vue.getVm().db);
+      info.initInfo(vue.getVm().db);
    });
 
    // Init panels

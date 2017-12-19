@@ -1,4 +1,5 @@
 import Stats from "../stats/stats.js";
+import Info from "../info/info.js";
 
 declare var L: any;
 
@@ -7,11 +8,13 @@ export default class Mapbox {
   markers: any;
   mapbox: any;
   stats: Stats;
+  info: Info;
 
 
-  constructor(stats: Stats) {
+  constructor(stats: Stats, info: Info) {
     this.markers = [];
     this.stats = stats;
+    this.info = info;
   }
 
   initMap(resolve: any, reject: any, db :Array<any>) {
@@ -41,10 +44,11 @@ export default class Mapbox {
      this.markers = new L.MarkerClusterGroup({
         maxClusterRadius: 40
      });
+     let info = this.info;
      let map = this.mapbox;
      for (var i = 0; i < db.length; i++) {
         if (db[i][1] >= dstart && db[i][1] <= dend) {
-           var attackType =db[i][29];
+           let attackType =db[i][29];
            var latlng = new L.LatLng(db[i][13], db[i][14]);
            var success = db[i][26];
            var attack_icon_url = "assets/images/icons/" + db[i][28] + "_" + success + ".png";
@@ -58,10 +62,12 @@ export default class Mapbox {
            });
 
 
+           let db_i = i;
            var popup = this.createPopup(db, i, attackType, attack_icon_url, latlng, success)
            marker.bindPopup(popup);
            marker.on('click', function (e:any) {
              map.setView(e.target.getLatLng(),map.getZoom());
+             info.updateInfo(db_i);
           });
 
            this.markers.addLayer(marker);
@@ -89,8 +95,11 @@ export default class Mapbox {
 
 
   createPopup(db :Array<any>, i:number,  attackType:string, attack_icon_url:string, latlng:any, success:any){
+     let icon_img = '<img src=' + attack_icon_url  + ' height=35 width=35/>';
+     let dateOfAttack:string = db[i][1] + '/' + db[i][2] + '/' + db[i][3];
+     let content =   '<h2>' + icon_img + ' ' + attackType + " <br/> <center>" + dateOfAttack + '</center></h2>';
+     /*
      let summary:string = db[i][18];
-
      if(!summary){
        summary = 'Sorry, no summary is available.';
      }
@@ -106,7 +115,7 @@ export default class Mapbox {
                      '<tr><td align=center>' + '<strong>Perpetrator</strong><br>' + gname +'</td><td align=center>' + '<strong>Target</strong><br>' + targetType +'</td></tr>'+
                      '</table>' +
                      '<hr>' +
-                     '<p>' + summary  + '</p>';
+                     '<p>' + summary  + '</p>';*/
 
      let popup = L.popup()
           .setLatLng(latlng)
