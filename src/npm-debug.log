@@ -1,0 +1,34 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\Programs\\Node\\node.exe',
+1 verbose cli   'D:\\Programs\\Node\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'start' ]
+2 info using npm@4.1.2
+3 info using node@v7.7.2
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info lifecycle world-of-terror@1.0.0~prestart: world-of-terror@1.0.0
+6 silly lifecycle world-of-terror@1.0.0~prestart: no script for prestart, continuing
+7 info lifecycle world-of-terror@1.0.0~start: world-of-terror@1.0.0
+8 verbose lifecycle world-of-terror@1.0.0~start: unsafe-perm in lifecycle true
+9 verbose lifecycle world-of-terror@1.0.0~start: PATH: D:\Programs\Node\node_modules\npm\bin\node-gyp-bin;D:\Git\World of Terror\node_modules\.bin;C:\Program Files\Java\jdk1.8.0_101\\bin;C:\ProgramData\Oracle\Java\javapath;D:\Programs\Python 2.7.13;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\MATLAB\R2016a\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;D:\Programs\TDM-GCC\bin;D:\Programs\QuickTime\QTSystem\;D:\wamp64\bin\php\php7.0.10;C:\ProgramData\ComposerSetup\bin;D:\Programs\Python 2.7.13\Scripts;D:\Programs\GnuWin32\bin;D:\Programs\cMake\bin;D:\Programs\GNU-Prolog\bin;D:\Programs\mingw64\bin;D:\Programs\Node\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\Skype\Phone\;D:\Programs\Putty\;C:\Program Files (x86)\Fuse\;C:\Users\joaov\AppData\Local\Microsoft\WindowsApps;D:\Programs\Microsoft VS Code\bin;C:\Users\joaov\AppData\Roaming\Composer\vendor\bin;C:\Users\joaov\AppData\Roaming\npm;C:\Users\joaov\AppData\Local\.meteor\;D:\Programs\Lucene\lucene-6.6.1;D:\Git\Kubernetes
+10 verbose lifecycle world-of-terror@1.0.0~start: CWD: D:\Git\World of Terror
+11 silly lifecycle world-of-terror@1.0.0~start: Args: [ '/d /s /c', 'concurrently "npm run tsc:w" "npm run lite" ' ]
+12 verbose stack Error: kill ENOSYS
+12 verbose stack     at exports._errnoException (util.js:1033:11)
+12 verbose stack     at process.kill (internal/process.js:188:13)
+12 verbose stack     at process.listener (D:\Programs\Node\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:95:15)
+12 verbose stack     at emitNone (events.js:86:13)
+12 verbose stack     at process.emit (events.js:188:7)
+12 verbose stack     at processEmit (D:\Programs\Node\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:155:32)
+12 verbose stack     at Signal.wrap.onsignal (internal/process.js:215:44)
+13 verbose cwd D:\Git\World of Terror\src
+14 error Windows_NT 10.0.15063
+15 error argv "D:\\Programs\\Node\\node.exe" "D:\\Programs\\Node\\node_modules\\npm\\bin\\npm-cli.js" "start"
+16 error node v7.7.2
+17 error npm  v4.1.2
+18 error code ENOSYS
+19 error errno ENOSYS
+20 error syscall kill
+21 error kill ENOSYS
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]

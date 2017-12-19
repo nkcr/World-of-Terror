@@ -1,13 +1,17 @@
+import Stats from "../stats/stats.js";
+
 declare var L: any;
 
 export default class Mapbox {
 
   markers: any;
   mapbox: any;
+  stats: Stats;
 
 
-  constructor() {
+  constructor(stats: Stats) {
     this.markers = [];
+    this.stats = stats;
   }
 
   initMap(resolve: any, reject: any, db :Array<any>) {
@@ -65,8 +69,9 @@ export default class Mapbox {
     }
 
     let markers = this.markers;
+    let stats = this.stats;
     this.mapbox.on('move', function (object:any) {
-      var inBounds:any[] = []; // will contain every id of the visible attacks.
+      let inBounds: any[] = []; // will contain every id of the visible attacks.
 
       // Get the map bounds - the top-left and bottom-right locations.
       var bounds = map.getBounds();
@@ -77,11 +82,8 @@ export default class Mapbox {
             inBounds.push(marker.options.title);
         }
       });
-      console.log(inBounds.join('\n'));
-      console.log(db[inBounds[0]][29]);
-
+      stats.updateStats(inBounds);
      });
-
     this.mapbox.addLayer(this.markers);
   }
 

@@ -31,7 +31,7 @@ export default class {
         dend: 100,
       },
       methods: {
-        collection: function () {
+        collection: function ():any {
           if (this.db != undefined) {
             return this.db[this.dstart][0];
           } else {

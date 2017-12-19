@@ -1,0 +1,51 @@
+.container-fluid {
+  width: 100%;
+  height: 100%;
+}
+
+div.panels {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+  div.panels .panel-selection {
+
+  }
+
+    div.panels .panel-selection button {
+      margin: 0;
+      border: 0;
+      background: #fff;
+      padding: 7px 15px;
+      border: 2px solid #f3f3f3;
+      border-bottom: 2px solid #fff;;
+      border-radius: 10px 10px 0 0;
+    }
+
+      div.panels .panel-selection button.current {
+        background-color: #f3f3f3;
+        border-bottom: 2px solid #f3f3f3;;
+      }
+
+      div.panels .panel-selection button:hover {
+        background-color: #fafafa;
+      }
+
+      div.panels .panel-selection button:active {
+        color: #000;
+        border-bottom: 2px solid #fafafa;
+      }
+
+  div.panels > section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #f3f3f3;
+    display: none;
+    padding: 10px;
+  }
+
+      div.panels > section:first-of-type {
+        display: block;
+      }
