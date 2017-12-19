@@ -13,41 +13,49 @@ class Main {
   //stats:Stats;
   constructor() {
     // Init Overlay
-    let overlay = new Overlay("overlay");
-    overlay.addEvent();
+    let overlay = new Overlay("overlay", "overlay-text");
+    var uuid1 = overlay.addEvent("Loading view...");
 
     // Init Vue and Slider
+    var uuid2 = overlay.addEvent("Init vue...");
     let vue = new Vue();
     let slider = new Slider();
     let stats = new Stats();
     let p1 = new Promise((resolve: any, reject: any) => {
       vue.initVue("#app", resolve, reject);
     });
+    p1.then(function() {overlay.removeEvent(uuid2);});
 
+    var uuid3 = overlay.addEvent("Init slider...");
     let p2 = new Promise((resolve: any, reject: any) => {
       slider.initSlider("slider", vue.getVm(), resolve, reject);
-   });
+    });
+    p2.then(function() {overlay.removeEvent(uuid3);});
     
    /*let p3 = new Promise((resolve: any, reject: any) => {
       stats.initStats("statistiques", vue.getVm().db,resolve, reject);
    });*/
 
     // Init map
+    var uuid4 = overlay.addEvent("Init map...");
     let map = new Mapbox(stats);
     const mapPromise = new Promise((resolve: any, reject: any) => {
       map.initMap(resolve, reject, vue.getVm().db);
-   });
+    });
+    mapPromise.then(function() {overlay.removeEvent(uuid4);});
 
     // Load data
+    var uuid5 = overlay.addEvent("Load data...");
     let parser = new Parser("src/vendors/papaparse.min.js");
     const loadPromise = new Promise((resolve: any, reject: any) => {
       parser.loadData("../../assets/data/db.csv", vue.getVm(), resolve, reject);
-   });
+    });
+    loadPromise.then(function() {overlay.removeEvent(uuid5);});
 
     // Wait for map and data
     const donePromise = Promise.all([p1, p2,mapPromise, loadPromise]);
     donePromise.then(function() {
-      overlay.removeEvent();
+      overlay.removeEvent(uuid1);
       console.log("Everything loaded");
       vue.setMap(map);
       map.mapUpdate(1970, 2020, vue.getVm().db);
