@@ -1,5 +1,13 @@
+/**
+ * The stats class displays the charts in the right part of the view. It uses ChartJS 1.1.1
+ * Thi class can be improved by reducing  the duplicate code, possibly by creating a RetriveAndDisplayChart function.
+ * RetrieveAndDisplayChart(column:number, canvas:string, legend:string,maxLabels=20)
+ */
+
+var errMess: string = "<p style=\"text-align:center;\">Too many labels to display this chart correctly, zoom in a bit!</p>";
+var zoomInImage : HTMLImageElement;
 export default class Stats {
-    //Target = 35, Group = 58
+    //Type = 29 ,Target = 35, Group = 58
 
 
     partialOpts: PieChartOptions = {
@@ -25,10 +33,18 @@ export default class Stats {
     PieTerr:CircularInstance;
     TerrLabel: HTMLElement;
 
+    canvasAttacks: any;
+    ctxAttacks:any;
+    pieChartAttacks:Chart;
+    pieAttacks:CircularInstance;
+    attacksLabel:HTMLElement;
+
     TerrGroupData:CircularChartData[];
     oldTerrData:CircularChartData[];
     TargetData:CircularChartData[];
     oldTargData:CircularChartData[];
+    AttackData:CircularChartData[];
+    oldAtkData:CircularChartData[];
 
     db:any;
     isInit:boolean;
@@ -46,29 +62,13 @@ export default class Stats {
             //console.log(this.db);
         }
 
-       /* if(this.pieTarg!=null)
-        {
-            this.pieTarg.clear();
-            //this.pieTarg.destroy();
-            this.TargetsLabel.innerHTML="";
-
-        }
-        if(this.PieTerr!=null)
-        {
-            this.PieTerr.clear();
-            //this.PieTerr.destroy();
-            this.TerrLabel.innerHTML="";
-
-        }*/
-
         var filteredTargets=[];
         var filteredTerrGroups=[];
+        var filteredAttackTypes=[];
 
         var targetLabels=[];
         var terrGroupLabels=[];
-
-        var targetValues=[];
-        var terrGroupLabels=[];
+        var attackTypeLabels=[];
 
         //Retrieve data from database
         var j=0;
@@ -76,9 +76,10 @@ export default class Stats {
         {
             filteredTargets[j]=this.db[attacks[i]][35];
             filteredTerrGroups[j]=this.db[attacks[i]][58];
+            filteredAttackTypes[j]=this.db[attacks[i]][29];
             j++;
         }
-        //retrieve labels
+        //retrieve labels for targets
         for(var i=0;i<filteredTargets.length;i++)
         {
         if(targetLabels.indexOf(filteredTargets[i])<0)
@@ -86,8 +87,8 @@ export default class Stats {
                 targetLabels.push(filteredTargets[i]);
             }
         }
-        //console.log("Target Labels: "+JSON.stringify(targetLabels));
-
+        
+        //retrieve labels for terrorist groups
         for(var i=0;i<filteredTerrGroups.length;i++)
         {
         if(terrGroupLabels.indexOf(filteredTerrGroups[i])<0)
@@ -95,11 +96,72 @@ export default class Stats {
                 terrGroupLabels.push(filteredTerrGroups[i]);
             }
         }
-        //console.log("Terrorist group Labels: "+JSON.stringify(terrGroupLabels));
+
+        //retrieve labels for attack types
+        for(var i=0;i<filteredAttackTypes.length;i++)
+        {
+        if(attackTypeLabels.indexOf(filteredAttackTypes[i])<0)
+            {
+                attackTypeLabels.push(filteredAttackTypes[i]);
+            }
+        }
 
         var nbTargets:number= targetLabels.length;
         var nbTerrGroups:number=terrGroupLabels.length;
+        var nbAttackTypes:number=attackTypeLabels.length;
 
+        /**
+         * ATTACK TYPES
+         */
+        var nbOcurrenceAttacks=[];
+            for(var i=0;i<attackTypeLabels.length;i++)
+            {
+                var curOccurrences=0;
+                for(var j=0;j<filteredAttackTypes.length;j++)
+                {
+                    if(attackTypeLabels[i]==filteredAttackTypes[j])
+                        {
+                            curOccurrences++;
+                        }
+                }
+                nbOcurrenceAttacks[i]=curOccurrences;
+            }
+
+            this.AttackData=[];
+            for(var i=0;i<attackTypeLabels.length;i++)
+            {
+                var curAttack: CircularChartData = {
+                    label:attackTypeLabels[i],
+                    value:nbOcurrenceAttacks[i],
+                    color:"hsl("+(i/attackTypeLabels.length*360)+",50%,50%)",
+                    highlight:"hsl("+(i/attackTypeLabels.length*360)+",50%,70%)"
+                }
+                this.AttackData.push(curAttack);
+            }
+
+            if(this.oldAtkData==null)
+            {
+                this.pieAttacks=this.pieChartAttacks.Doughnut(this.AttackData,this.partialOpts);
+                var pieAttackLegend=this.pieAttacks.generateLegend();
+                this.attacksLabel.innerHTML=pieAttackLegend;
+            }
+            else
+            {
+                 if(JSON.stringify(this.oldAtkData)!=JSON.stringify(this.AttackData))
+                {
+                    this.pieAttacks.clear();
+                    this.pieAttacks.destroy();
+                    this.pieAttacks=this.pieChartAttacks.Doughnut(this.AttackData,this.partialOpts);
+                    var pieAttackLegend=this.pieAttacks.generateLegend();
+                    this.attacksLabel.innerHTML=pieAttackLegend;
+                }
+            }
+            this.oldAtkData=this.AttackData;
+
+
+        /**
+         * TARGETS
+         */
         if(nbTargets<20)
         {
             //creating array with number of occurences per target
@@ -151,9 +213,18 @@ export default class Stats {
         }
         else
         {
-
+            if(this.pieTarg!=null)
+                {
+                    this.pieTarg.clear();
+                    this.pieTarg.destroy();
+                }
+            this.ctxTargets.drawImage(zoomInImage,this.canvasTargets.width / 2 - 100 / 2, this.canvasTargets.height / 2 - 100 / 2,100,100);
+            this.TargetsLabel.innerHTML =errMess;
         }
 
+        /**
+         * TERRORIST GROUPS
+         */
         if(nbTerrGroups<20)
         {
             //creating array with number of occurrences per terrorist group
@@ -204,23 +275,40 @@ export default class Stats {
         }
         else
         {
-
+            if(this.PieTerr!=null)
+            {
+                this.PieTerr.clear();
+                this.PieTerr.destroy();
+            }
+            this.ctxTerrGroups.drawImage(zoomInImage,this.canvasTerrGroups.width / 2 - 100 / 2, this.canvasTerrGroups.height / 2 - 100 / 2,100,100);
+            this.TerrLabel.innerHTML=errMess;
         }
+
+        
+
     }
     initStats(db:any) {
         this.isInit=true;
         this.db=db;
+
+        zoomInImage = <HTMLImageElement>document.getElementById('zoomIn');
+
         this.canvasTargets = <HTMLCanvasElement>document.getElementById("targets");
         this.ctxTargets = this.canvasTargets.getContext('2d');
 
         this.canvasTerrGroups = <HTMLCanvasElement>document.getElementById("terrorist-groups");
         this.ctxTerrGroups = this.canvasTerrGroups.getContext('2d');
 
+        this.canvasAttacks = <HTMLCanvasElement>document.getElementById("attack-types");
+        this.ctxAttacks = this.canvasAttacks.getContext('2d');
+
         this.pieChartTarg=new Chart(this.ctxTargets);
         this.pieChartTerr=new Chart(this.ctxTerrGroups);
+        this.pieChartAttacks= new Chart(this.ctxAttacks);
 
         this.TargetsLabel=document.getElementById("targets_legend");
         this.TerrLabel=document.getElementById("terrorist_legend");
+        this.attacksLabel = document.getElementById("attack_legend");
         }
 
 }

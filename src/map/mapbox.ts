@@ -1,5 +1,6 @@
 import Stats from "../stats/stats.js";
 import Info from "../info/info.js";
+import Overlay from "../overlay/overlay";
 
 declare var L: any;
 
@@ -9,6 +10,7 @@ export default class Mapbox {
   mapbox: any;
   stats: Stats;
   info: Info;
+  overlay: Overlay;
 
 
   constructor(stats: Stats, info: Info) {
@@ -17,8 +19,9 @@ export default class Mapbox {
     this.info = info;
   }
 
-  initMap(resolve: any, reject: any, db :Array<any>) {
+  initMap(resolve: any, reject: any, db :Array<any>, overlay: Overlay) {
     var me = this;
+    this.overlay = overlay;
 
     var reset = document.getElementById("reset");
     reset.onclick = function() {
@@ -37,6 +40,7 @@ export default class Mapbox {
   }
 
   mapUpdate(dstart :number, dend :number, db :Array<any>, filters_perpetrators: Array<string>) {
+     let uuid = this.overlay.addEvent("Updating map...");
      console.log('------------mapUpdate------------');
      console.log(filters_perpetrators);
      console.log(filters_perpetrators.length);
@@ -94,6 +98,7 @@ export default class Mapbox {
       stats.updateStats(inBounds);
      });
     this.mapbox.addLayer(this.markers);
+    this.overlay.removeEvent(uuid);
   }
 
 
