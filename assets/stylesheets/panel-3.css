@@ -1,0 +1,22 @@
+section#panel-3 {
+
+}
+
+  section#panel-3 div.legends {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+    section#panel-3 div.legends div.legend {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 5px 0;
+    }
+
+      section#panel-3 div.legends div.legend p {
+        margin: 0;
+        padding: 0 15px 0 10px;
+      }

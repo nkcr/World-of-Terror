@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/stylesheets/panels.css">
     <link rel="stylesheet" href="assets/stylesheets/panel-1.css">
     <link rel="stylesheet" href="assets/stylesheets/panel-2.css">
+    <link rel="stylesheet" href="assets/stylesheets/panel-3.css">
     <link href="assets/stylesheets/vendors/nouislider.min.css" rel="stylesheet">
     <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
@@ -52,13 +53,43 @@
                 Stats
               </button>
               <button id="btn-panel-2" data-panel="2">
+                <img src="assets/images/icons/filter.png" height=20 width=20/>
+                Filters
+              </button>
+              <button id="btn-panel-3" data-panel="3">
                 <img src="assets/images/icons/info.png" height=20 width=20/>
                 About
               </button>
             </div>
             <section id="panel-1">
-
-
+               <div id="infoMarker">
+                 <h2>Selected Marker</h2>
+                 <a id="info_attack_name"></a>
+                 <table id="marker_info_table">
+                   <tr>
+                     <th>Date</th>
+                     <th>Success or Failure</th>
+                   </tr>
+                   <tr>
+                     <td id="info_attack_date"></td>
+                     <td id="info_attack_success"></td>
+                   </tr>
+                   <tr>
+                      <th>Perpetrator</th>
+                      <th>Target</th>
+                   </tr>
+                   <tr>
+                      <td>
+                        <a id="info_attack_perpetrator"></a>
+                      </td>
+                   <td id="info_attack_target"></td>
+                  </tr>
+                  </table>
+                  <hr align="center" width="100%" color="#BDBDBD"/>
+                  <p id="info_attack_description" class="description_marker">
+                   -
+                  </p>
+              </div>
               <h2>Terrorist Groups</h2>
               <canvas id="terrorist-groups" height="240" width="400">
               </canvas>
@@ -70,38 +101,39 @@
               </canvas>
               <div id="targets_legend">
               </div>
-
-              <div id="infoMarker">
+            </section>
+            <section id="panel-2">
+               <div id="infoMarker">
                  <h2>Selected Marker</h2>
-              <a id="info_attack_name">Hostage Taking (Kidnapping)</a>
-              <table id="marker_info_table">
-                <tr>
-                  <th>Date</th>
-                  <th>Success or Failure</th>
-                </tr>
-                <tr>
-                   <td id="info_attack_date">1970/7/24</td>
-                   <td id="info_attack_success"><img src="assets/images/success/1.png" height="25" width="25/"></td>
-                </tr>
-                <tr>
-                   <th>Perpetrator</th>
-                   <th>Target</th>
-                </tr>
-                <tr>
-                   <td id="info_attack_perpetrator">Croatian Nationalists</td>
-                   <td id="info_attack_target">Government (Diplomatic)</td>
-                </tr>
-              </table
-
-              <hr size="10" noshade>
-              <p id="info_attack_description" class="description_marker">
-                 5/6/1971: An explosive device detonated within the vicinity of Military Trucks at the Naval Ammunition Depot in Hawthorne, Nevada, United States. Private Charles Henderson was killed and Lance Corporal Charles Bauer was injured.
-              </p>
-            </div>
-
+                 <a id="info_attack_name_filter"></a>
+                 <table id="marker_info_table">
+                  <tr>
+                     <th>Date</th>
+                     <th>Success or Failure</th>
+                  </tr>
+                  <tr>
+                     <td id="info_attack_date_filter"></td>
+                     <td id="info_attack_success_filter"></td>
+                  </tr>
+                  <tr>
+                     <th>Perpetrator</th>
+                     <th>Target</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <a id="info_attack_perpetrator_filter"></a>
+                     </td>
+                  <td id="info_attack_target_filter"></td>
+                  </tr>
+                  </table>
+                  <hr align="center" width="100%" color="#BDBDBD"/>
+                  <p id="info_attack_description_filter" class="description_marker">
+                  -
+                  </p>
+               </div>
             </section>
 
-            <section id="panel-2">
+            <section id="panel-3">
               <h2>Icons</h2>
                <div class="legends">
                 <div class="legend">

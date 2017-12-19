@@ -6,6 +6,7 @@ export default class {
   _vm: any;
   _map: Mapbox;
 
+
   constructor() {
 
   }
@@ -19,7 +20,7 @@ export default class {
   }
 
   mapUpdate() {
-    this._map.mapUpdate(this._vm.dstart, this._vm.dend, this._vm.db);
+    this._map.mapUpdate(this._vm.dstart, this._vm.dend, this._vm.db, this._vm.filters_perpetrators);
   }
 
   initVue(dom_el: string, resolve: any, reject: any) {
@@ -29,6 +30,7 @@ export default class {
       data: {
         dstart: 1,
         dend: 100,
+        filters_perpetrators: [],
       },
       methods: {
         collection: function ():any {
@@ -44,6 +46,9 @@ export default class {
           me.mapUpdate();
         },
         dend: function () {
+          me.mapUpdate();
+        },
+        filters_perpetrators: function () {
           me.mapUpdate();
         }
       }
