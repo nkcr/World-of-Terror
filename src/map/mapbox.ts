@@ -36,8 +36,12 @@ export default class Mapbox {
     });
   }
 
-  mapUpdate(dstart :number, dend :number, db :Array<any>, ) {
+  mapUpdate(dstart :number, dend :number, db :Array<any>, filters_perpetrators: Array<string>) {
      console.log('------------mapUpdate------------');
+     console.log(filters_perpetrators);
+     console.log(filters_perpetrators.length);
+     console.log(dstart);
+     console.log(dend);
      if (this.markers) {
         this.mapbox.removeLayer(this.markers);
      }
@@ -69,7 +73,6 @@ export default class Mapbox {
              map.setView(e.target.getLatLng(),map.getZoom());
              info.updateInfo(db_i);
           });
-
            this.markers.addLayer(marker);
         }
     }
@@ -116,7 +119,6 @@ export default class Mapbox {
                      '</table>' +
                      '<hr>' +
                      '<p>' + summary  + '</p>';*/
-
      let popup = L.popup()
           .setLatLng(latlng)
           .setContent(content);

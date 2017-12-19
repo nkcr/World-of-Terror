@@ -6,6 +6,7 @@ import Overlay from "./overlay/overlay.js";
 import Stats from "./stats/stats.js";
 import Info from "./info/info.js";
 import Panels from "./panels/panels.js"
+import Filters from "./filters/filters.js"
 
 declare var Promise: any;
 
@@ -59,9 +60,10 @@ class Main {
       overlay.removeEvent(uuid1);
       console.log("Everything loaded");
       vue.setMap(map);
-      map.mapUpdate(1970, 2020, vue.getVm().db);
+      map.mapUpdate(1970, 2020, vue.getVm().db, vue.getVm().filters_perpetrators);
       stats.initStats(vue.getVm().db);
       info.initInfo(vue.getVm().db);
+      let filters = new Filters(vue.getVm(), vue.getVm().db, info);
    });
 
    // Init panels

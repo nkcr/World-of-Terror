@@ -8,6 +8,15 @@ export default class Info {
      info_attack_target:any;
      info_attack_description:any;
 
+     info_attack_name_filter:any;
+     info_attack_date_filter:any;
+     info_attack_success_filter:any;
+     info_attack_perpetrator_filter:any;
+     info_attack_target_filter:any;
+     info_attack_description_filter:any;
+
+     current_marker_id:number;
+
      db:any;
 
      constructor() {
@@ -22,10 +31,18 @@ export default class Info {
         this.info_attack_perpetrator=document.getElementById("info_attack_perpetrator");
         this.info_attack_target=document.getElementById("info_attack_target");
         this.info_attack_description=document.getElementById("info_attack_description");
+
+        this.info_attack_name_filter=document.getElementById("info_attack_name_filter");
+        this.info_attack_date_filter=document.getElementById("info_attack_date_filter");
+        this.info_attack_success_filter=document.getElementById("info_attack_success_filter");
+        this.info_attack_perpetrator_filter=document.getElementById("info_attack_perpetrator_filter");
+        this.info_attack_target_filter=document.getElementById("info_attack_target_filter");
+        this.info_attack_description_filter=document.getElementById("info_attack_description_filter");
      }
 
      updateInfo(i:number){
-        console.log("Info - updateInfo");
+        this.current_marker_id = i;
+
         let attackType = this.db[i][29];
         let success = this.db[i][26];
         var attack_icon_url = "assets/images/icons/" + this.db[i][28] + "_" + success + ".png";
@@ -48,6 +65,13 @@ export default class Info {
         this.info_attack_perpetrator.innerHTML = gname
         this.info_attack_target.innerHTML = targetType;
         this.info_attack_description.innerHTML = summary;
+
+        this.info_attack_name_filter.innerHTML = icon_img;
+        this.info_attack_date_filter.innerHTML = dateOfAttack;
+        this.info_attack_success_filter.innerHTML = success_img;
+        this.info_attack_perpetrator_filter.innerHTML = gname
+        this.info_attack_target_filter.innerHTML = targetType;
+        this.info_attack_description_filter.innerHTML = summary;
      }
 
 
