@@ -7,6 +7,7 @@
 
 var errMess: string = "<p style=\"text-align:center;\">Too many labels to display this chart correctly... Zoom in a bit!</p>";
 var zoomInImage : HTMLImageElement;
+
 export default class Stats {
     //Type = 29 ,Target = 35, Group = 58
 

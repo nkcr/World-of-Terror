@@ -70,6 +70,10 @@ class Main {
    // Init panels
    let panels = new Panels();
 
+   document.getElementById("export-btn").onclick = function() {
+    parser.exportData(vue.getVm().db, map.indexesInBounds);
+   }
+
   }
 }
 
