@@ -1,6 +1,7 @@
 import Stats from "../stats/stats.js";
 import Info from "../info/info.js";
 import Overlay from "../overlay/overlay";
+import Filters from "../filters/filters.js";
 
 declare var L: any;
 
@@ -11,22 +12,31 @@ export default class Mapbox {
   stats: Stats;
   info: Info;
   overlay: Overlay;
+  filters: Filters;
+
+  vm:any;
 
   indexesInBounds: any[] = [];
 
-  constructor(stats: Stats, info: Info) {
+  constructor(stats: Stats, info: Info, vm:any) {
     this.markers = [];
     this.stats = stats;
     this.info = info;
+    this.vm = vm;
+  }
+
+  setFilters(filters: Filters){
+    this.filters = filters;
   }
 
   initMap(resolve: any, reject: any, db :Array<any>, overlay: Overlay) {
     var me = this;
     this.overlay = overlay;
 
-    var reset = document.getElementById("reset");
-    reset.onclick = function() {
-      me.mapbox.setView([-10, 1.757813], 2);
+
+    var reset_view = document.getElementById("reset_view");
+    reset_view.onclick = function() {
+      me.mapbox.setView([-10, 1.757813], 1);
     }
 
     console.log('------------initMap------------');
@@ -127,17 +137,6 @@ export default class Mapbox {
     let stats = this.stats;
     let me = this;
     this.mapbox.on('move', function (object:any) {
-      /*let inBounds: any[] = []; // will contain every id of the visible attacks.
-
-      // Get the map bounds - the top-left and bottom-right locations.
-      var bounds = map.getBounds();
-      markers.eachLayer(function(marker:any) {
-        // For each marker, consider whether it is currently visible by comparing
-        // with the current map bounds.
-        if (bounds.contains(marker.getLatLng())){
-            inBounds.push(marker.options.title);
-        }
-     });*/
       let inBounds: any[] = me.countMarkerInBox(map, markers);
       me.indexesInBounds = inBounds;
       stats.updateStats(inBounds);
@@ -149,6 +148,11 @@ export default class Mapbox {
     let inBounds: any[] = me.countMarkerInBox(map, markers);
     this.indexesInBounds = inBounds;
     stats.updateStats(this.indexesInBounds);
+
+    // Update vue reset si reset = false
+    if(this.vm.reset_all){
+      this.filters.reset_filters_graphical_elements();
+    }
   }
 
   countMarkerInBox(map:any, markers:any){

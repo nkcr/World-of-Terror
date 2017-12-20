@@ -27,7 +27,7 @@
 
   <body>
     <img onclick="ZoomIn();" src="assets/images/zoompls.png" id="zoomIn" style="display:none"/>
-    
+
     <div id="overlay">
       <img src="assets/images/loading.svg">
       <div id="overlay-text"></div>
@@ -42,7 +42,10 @@
         </div>
       </div>
 
-      <button id="reset">Reset view</button>
+      <div id="mapbox"></div>
+      <button id="reset_view">Reset view</button>
+      <button id="reset_filters">Reset filters</button>
+
 
       <div id="info">
         <h1>World of Terror</h1>
@@ -207,6 +210,7 @@
                       <div class="checkbox">
                         <label><input type="checkbox" value="8" name="attackTypeCheckbox" checked>Unkown</label>
                       </div>
+                      <button id="reset_attack_type_btn">Reset attack types</button>
                   </div>
                 </form>
 
