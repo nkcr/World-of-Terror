@@ -9,7 +9,7 @@ var errMess: string = "<p style=\"text-align:center;\">Too many labels to displa
 var zoomInImage : HTMLImageElement;
 
 export default class Stats {
-    //Data organization in db file : 
+    //Data organization in db file :
     //Type = 29 ,Target = 35, Group = 58, success = 26
     partialOpts: PieChartOptions = {
     segmentShowStroke: true,
@@ -80,13 +80,13 @@ export default class Stats {
         {
             // Retrieving list of targets from DB
             filteredTargets[j]=this.db[attacks[i]][35];
-            
+
             // Retrieving list of terrorist groups from DB
             filteredTerrGroups[j]=this.db[attacks[i]][58];
-            
+
             // Retrieving list of types of attacks from DB
             filteredAttackTypes[j]=this.db[attacks[i]][29];
-            
+
             // Retrieving Success/Failure of attacks from DB
             filteredSuccess[j]=this.db[attacks[i]][26];
             j++;
@@ -100,7 +100,7 @@ export default class Stats {
                 nbSuccesses+=1;
             }
         }
-        
+
         //retrieve labels for targets
         for(var i=0;i<filteredTargets.length;i++)
         {
@@ -109,7 +109,7 @@ export default class Stats {
                 targetLabels.push(filteredTargets[i]);
             }
         }
-        
+
         //retrieve labels for terrorist groups
         for(var i=0;i<filteredTerrGroups.length;i++)
         {
@@ -310,14 +310,14 @@ export default class Stats {
             var percentageSuccess:number=Math.round(nbSuccesses/numberOfAttacks*100);
             var nbUnsuccessful:number=numberOfAttacks-nbSuccesses;
             var percentageFailure:number=Math.round(nbUnsuccessful/numberOfAttacks*100);
-            this.SuccessElement.innerHTML="<p><b>Successful attacks</b>:"+nbSuccesses+"("+percentageSuccess+"%).<br><b>Unsuccessful attacks</b>:"+nbUnsuccessful+"("+percentageFailure+"%).</p>";
+            this.SuccessElement.innerHTML="<p><b>Successful attacks</b>: "+nbSuccesses+"("+percentageSuccess+"%).<br><b>Unsuccessful attacks</b>: "+nbUnsuccessful+"("+percentageFailure+"%).</p>";
         }
         else
         {
             this.SuccessElement.innerHTML="<p>There are no attacks in the selected zone... Move around a bit!</p>";
 
         }
-        
+
 
     }
     initStats(db:any) {
