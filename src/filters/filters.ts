@@ -58,6 +58,10 @@ export default class Filters {
      this.filter_perpetrator_href = document.getElementById("filter_perpetrator");
      var me = this;
      this.filter_perpetrator_href.onclick = function() {
+        if(typeof info.current_marker_id == "undefined"){
+           return;
+        }
+        
         me._filter_perpetrator_initial_state = !me._filter_perpetrator_initial_state;
         if(me._filter_perpetrator_initial_state){
            vm.filters_perpetrators = -1;
@@ -74,6 +78,10 @@ export default class Filters {
      this.filter_targets_href = document.getElementById("filter_targets");
      var me = this;
      this.filter_targets_href.onclick = function() {
+        if(typeof info.current_marker_id == "undefined"){
+           return;
+        }
+
         me._filter_targets_initial_state = !me._filter_targets_initial_state;
         if(me._filter_targets_initial_state){
            vm.filters_targets = -1;
