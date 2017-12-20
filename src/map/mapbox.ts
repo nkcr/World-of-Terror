@@ -39,13 +39,8 @@ export default class Mapbox {
     });
   }
 
-  mapUpdate(dstart :number, dend :number, db :Array<any>, filters_perpetrators: Array<string>) {
+  mapUpdate(dstart :number, dend :number, db :Array<any>, filters_success:string, filters_perpetrators:Array<number>) {
      const uuid = this.overlay.addEvent("Updating map...");
-     console.log('------------mapUpdate------------');
-     console.log(filters_perpetrators);
-     console.log(filters_perpetrators.length);
-     console.log(dstart);
-     console.log(dend);
      if (this.markers) {
         this.mapbox.removeLayer(this.markers);
      }
@@ -56,10 +51,31 @@ export default class Mapbox {
      let map = this.mapbox;
      for (var i = 0; i < db.length; i++) {
         if (db[i][1] >= dstart && db[i][1] <= dend) {
+           var success = db[i][26];
+
+           /**********************************************************************/
+           /************************ Filter for Success  *************************/
+           /**********************************************************************/
+           if(filters_success == "success_radio_id" && success != 1){
+             continue;
+           }
+           if(filters_success == "unsuccess_radio_id" && success != 0){
+             continue;
+           }
+
+           /**********************************************************************/
+           /********************** Filter for Attack Type  ***********************/
+           /**********************************************************************/
+           let attackTypeId:number = Number(db[i][28]);
+           if(!filters_perpetrators[attackTypeId-1]){
+             continue;
+           }
+           /**********************************************************************/
+
+
            let attackType =db[i][29];
            var latlng = new L.LatLng(db[i][13], db[i][14]);
-           var success = db[i][26];
-           var attack_icon_url = "assets/images/icons/" + db[i][28] + "_" + success + ".png";
+           var attack_icon_url = "assets/images/icons/" + attackTypeId + "_" + success + ".png";
            var myIcon = L.icon({
               iconUrl: attack_icon_url,
               iconSize:     [50, 50], // size of the icon

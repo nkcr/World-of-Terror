@@ -20,7 +20,7 @@ export default class {
   }
 
   mapUpdate() {
-    this._map.mapUpdate(this._vm.dstart, this._vm.dend, this._vm.db, this._vm.filters_perpetrators);
+    this._map.mapUpdate(this._vm.dstart, this._vm.dend, this._vm.db, this._vm.filters_success, this._vm.filters_perpetrators);
   }
 
   initVue(dom_el: string, resolve: any, reject: any) {
@@ -30,7 +30,8 @@ export default class {
       data: {
         dstart: 1970,
         dend: 2020,
-        filters_perpetrators: [],
+        filters_success: "success_unsuccess_radio_id",
+        filters_perpetrators: [true,true,true,true,true,true,true,true,true],
       },
       methods: {
         collection: function ():any {
@@ -48,9 +49,12 @@ export default class {
         dend: function () {
           me.mapUpdate();
         },
+        filters_success: function () {
+          me.mapUpdate();
+        },
         filters_perpetrators: function () {
           me.mapUpdate();
-        }
+        },
       }
     });
     resolve("OK init Vue");

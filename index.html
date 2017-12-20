@@ -88,7 +88,7 @@
                   </table>
                   <hr align="center" width="100%" color="#BDBDBD"/>
                   <p id="info_attack_description" class="description_marker">
-                   
+
                   </p>
               </div>
 
@@ -99,7 +99,7 @@
                 <div id="attack_legend"  width="200" height="240">
                 </div>
               </div>
-              
+
               <hr>
 
               <h2 style="text-align: center;"> Terrorist Groups</h2>
@@ -109,7 +109,7 @@
                 <div id="terrorist_legend"  width="200" height="240">
                 </div>
               </div>
-              
+
               <hr>
               <h2 style="text-align: center;">Targets</h2>
               <div id="div-targets">
@@ -151,6 +151,52 @@
                   </p>
                </div>
                <h2>Filters</h2>
+               <form name="successForm">
+                  <h5>Success or unsuccess filter</h5>
+                  <div class="radio">
+                    <label><input id="success_unsuccess_radio_id" type="radio" name="successRadio" checked>Success and unsuccess attacks</label>
+                  </div>
+                  <div class="radio">
+                    <label><input id="success_radio_id"  type="radio" name="successRadio">Success attacks only</label>
+                  </div>
+                  <div class="radio disabled">
+                    <label><input id="unsuccess_radio_id"  type="radio" name="successRadio">Unsuccess attacks only</label>
+                  </div>
+               </form>
+
+               <form name="attacktypeForm">
+                  <div class="form-group">
+                     <h5>Attack type filter</h5>
+                     <div class="checkbox">
+                       <label><input type="checkbox" value="0" name="attackTypeCheckbox" checked>Assassination</label>
+                     </div>
+                     <div class="checkbox">
+                       <label><input type="checkbox" value="1" name="attackTypeCheckbox" checked>Armed Assault</label>
+                     </div>
+                     <div class="checkbox">
+                       <label><input type="checkbox" value="2" name="attackTypeCheckbox" checked>Bombing/Explosion</label>
+                     </div>
+                     <div class="checkbox">
+                       <label><input type="checkbox" value="3" name="attackTypeCheckbox" checked>Hijacking</label>
+                     </div>
+                     <div class="checkbox">
+                       <label><input type="checkbox" value="4" name="attackTypeCheckbox" checked>Hostage taking (barricade incident)</label>
+                     </div>
+                     <div class="checkbox">
+                       <label><input type="checkbox" value="5" name="attackTypeCheckbox" checked>Hostage taking (kidnaping)</label>
+                     </div>
+                     <div class="checkbox">
+                       <label><input type="checkbox" value="6" name="attackTypeCheckbox" checked>Facility / Infrastructure attack</label>
+                     </div>
+                     <div class="checkbox">
+                       <label><input type="checkbox" value="7" name="attackTypeCheckbox" checked>Unarmed assault</label>
+                     </div>
+                     <div class="checkbox">
+                       <label><input type="checkbox" value="8" name="attackTypeCheckbox" checked>Unkown</label>
+                     </div>
+                  </div>
+               </form>
+
             </section>
 
             <section id="panel-3">
