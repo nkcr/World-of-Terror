@@ -27,64 +27,68 @@
 
   <body>
     <img onclick="ZoomIn();" src="assets/images/zoompls.png" id="zoomIn" style="display:none"/>
+
     <div id="overlay">
       <img src="assets/images/loading.svg">
-      <div id="overlay-text">
-      </div>
+      <div id="overlay-text"></div>
     </div>
-    <div id="app" class="container-fluid">
-      <div class="tools">
-        <div id="slider"></div>
-     </div>
 
-     <div class="row">
+    <div id="app">
+
+      <div class="mapbox-wrapper">
+        <div id="mapbox"></div>
+        <div class="tools">
+          <div id="slider"></div>
+        </div>
+      </div>
 
       <div id="mapbox"></div>
       <button id="reset_view">Reset view</button>
       <button id="reset_filters">Reset filters</button>
 
+
       <div id="info">
         <h1>World of Terror</h1>
 
-        <div class="container-fluid">
+        <div class="panels">
+          <div class="panel-selection">
+            <button class="current" id="btn-panel-1" data-panel="1">
+              <img src="assets/images/icons/stats.png" height=20 width=20/>
+              Stats
+            </button>
+            <button id="btn-panel-2" data-panel="2">
+              <img src="assets/images/icons/filter.png" height=20 width=20/>
+              Filters
+            </button>
+            <button id="btn-panel-3" data-panel="3">
+              <img src="assets/images/icons/info.png" height=20 width=20/>
+              About
+            </button>
+          </div>
 
-          <div class="panels">
-            <div class="panel-selection">
-              <button class="current" id="btn-panel-1" data-panel="1">
-                <img src="assets/images/icons/stats.png" height=20 width=20/>
-                Stats
-              </button>
-              <button id="btn-panel-2" data-panel="2">
-                <img src="assets/images/icons/filter.png" height=20 width=20/>
-                Filters
-              </button>
-              <button id="btn-panel-3" data-panel="3">
-                <img src="assets/images/icons/info.png" height=20 width=20/>
-                About
-              </button>
-            </div>
+          <div class="panels-wrapper">
             <section id="panel-1">
-               <div id="infoMarker">
-                 <h2>Selected Marker</h2>
-                 <a id="info_attack_name"></a>
-                 <table id="marker_info_table">
-                   <tr>
-                     <th>Date</th>
-                     <th>Success or Failure</th>
-                   </tr>
-                   <tr>
-                     <td id="info_attack_date"></td>
-                     <td id="info_attack_success"></td>
-                   </tr>
-                   <tr>
+                <div id="infoMarker">
+                  <h2>Selected Marker</h2>
+                  <a id="info_attack_name"></a>
+                  <table id="marker_info_table">
+                    <tr>
+                      <th>Date</th>
+                      <th>Success or Failure</th>
+                    </tr>
+                    <tr>
+                      <td id="info_attack_date"></td>
+                      <td id="info_attack_success"></td>
+                    </tr>
+                    <tr>
                       <th>Perpetrator</th>
                       <th>Target</th>
-                   </tr>
-                   <tr>
+                    </tr>
+                    <tr>
                       <td>
                         <a id="info_attack_perpetrator"></a>
                       </td>
-                   <td id="info_attack_target"></td>
+                    <td id="info_attack_target"></td>
                   </tr>
                   </table>
                   <hr align="center" width="100%" color="#BDBDBD"/>
@@ -123,43 +127,43 @@
 
             </section>
             <section id="panel-2">
-               <div id="infoMarker">
-                 <h2>Selected Marker</h2>
-                 <a id="info_attack_name_filter"></a>
-                 <table id="marker_info_table">
+                <div id="infoMarker">
+                  <h2>Selected Marker</h2>
+                  <a id="info_attack_name_filter"></a>
+                  <table id="marker_info_table">
                   <tr>
-                     <th>Date</th>
-                     <th>Success or Failure</th>
+                      <th>Date</th>
+                      <th>Success or Failure</th>
                   </tr>
                   <tr>
-                     <td id="info_attack_date_filter"></td>
-                     <td id="info_attack_success_filter"></td>
+                      <td id="info_attack_date_filter"></td>
+                      <td id="info_attack_success_filter"></td>
                   </tr>
                   <tr>
-                     <th>Perpetrator</th>
-                     <th>Target</th>
+                      <th>Perpetrator</th>
+                      <th>Target</th>
                   </tr>
                   <tr>
-                     <td>
+                      <td>
                         <a id="info_attack_perpetrator_filter"></a>
                         <br>
                         <a href="#" id="filter_perpetrator">Display only attacks triggered by this perpetrator</a>
-                     </td>
-                     <td>
+                      </td>
+                      <td>
                         <a id="info_attack_target_filter"></a>
                         <br>
                         <a href="#" id="filter_targets">Display only attacks for this target type</a>
-                     </td>
+                      </td>
                   </tr>
                   </table>
                   <hr align="center" width="100%" color="#BDBDBD"/>
                   <p id="info_attack_description_filter" class="description_marker">
                   -
                   </p>
-               </div>
-               <h2>Filters</h2>
+                </div>
+                <h2>Filters</h2>
 
-               <form name="successForm">
+                <form name="successForm">
                   <h5>Success or unsuccess filter</h5>
                   <div class="radio">
                     <label><input id="success_unsuccess_radio_id" type="radio" name="successRadio" checked>Success and unsuccess attacks</label>
@@ -170,46 +174,46 @@
                   <div class="radio disabled">
                     <label><input id="unsuccess_radio_id"  type="radio" name="successRadio">Unsuccess attacks only</label>
                   </div>
-               </form>
-               <br>
-               <form name="attacktypeForm">
+                </form>
+                <br>
+                <form name="attacktypeForm">
                   <div class="form-group">
-                     <h5>Attack type filter</h5>
-                     <div class="checkbox">
-                       <label><input type="checkbox" value="0" name="attackTypeCheckbox" checked>Assassination</label>
-                     </div>
-                     <div class="checkbox">
-                       <label><input type="checkbox" value="1" name="attackTypeCheckbox" checked>Armed Assault</label>
-                     </div>
-                     <div class="checkbox">
-                       <label><input type="checkbox" value="2" name="attackTypeCheckbox" checked>Bombing/Explosion</label>
-                     </div>
-                     <div class="checkbox">
-                       <label><input type="checkbox" value="3" name="attackTypeCheckbox" checked>Hijacking</label>
-                     </div>
-                     <div class="checkbox">
-                       <label><input type="checkbox" value="4" name="attackTypeCheckbox" checked>Hostage taking (barricade incident)</label>
-                     </div>
-                     <div class="checkbox">
-                       <label><input type="checkbox" value="5" name="attackTypeCheckbox" checked>Hostage taking (kidnaping)</label>
-                     </div>
-                     <div class="checkbox">
-                       <label><input type="checkbox" value="6" name="attackTypeCheckbox" checked>Facility / Infrastructure attack</label>
-                     </div>
-                     <div class="checkbox">
-                       <label><input type="checkbox" value="7" name="attackTypeCheckbox" checked>Unarmed assault</label>
-                     </div>
-                     <div class="checkbox">
-                       <label><input type="checkbox" value="8" name="attackTypeCheckbox" checked>Unkown</label>
-                     </div>
+                      <h5>Attack type filter</h5>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="0" name="attackTypeCheckbox" checked>Assassination</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="1" name="attackTypeCheckbox" checked>Armed Assault</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="2" name="attackTypeCheckbox" checked>Bombing/Explosion</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="3" name="attackTypeCheckbox" checked>Hijacking</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="4" name="attackTypeCheckbox" checked>Hostage taking (barricade incident)</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="5" name="attackTypeCheckbox" checked>Hostage taking (kidnaping)</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="6" name="attackTypeCheckbox" checked>Facility / Infrastructure attack</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="7" name="attackTypeCheckbox" checked>Unarmed assault</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="8" name="attackTypeCheckbox" checked>Unkown</label>
+                      </div>
                   </div>
-               </form>
+                </form>
 
             </section>
 
             <section id="panel-3">
               <h2>Icons</h2>
-               <div class="legends">
+                <div class="legends">
                 <div class="legend">
                   <img src="assets/images/icons/1_1.png" height=40 width=40/>
                   <p>Assassination</p>
@@ -249,14 +253,14 @@
               </div>
               <h5>Success or unsuccess</h5>
               <div class="legends">
-               <div class="legend">
+                <div class="legend">
                   <img src="assets/images/icons/1_1.png" height=40 width=40/>
                   <p>Success: means that the attack type took place</p>
-               </div>
-               <div class="legend">
+                </div>
+                <div class="legend">
                   <img src="assets/images/icons/1_0.png" height=38 width=38/>
                   <p>Unsuccess: means that the attack type did not take place</p>
-               </div>
+                </div>
               </div>
               <br/>
               <h2>About</h2>
@@ -269,11 +273,10 @@
                 If you have any question, please send us an email at info@worldofterror.com.
               </p>
             </section>
-          </div>
+          </div> <!-- panels-wrapper -->
         </div>
       </div>
     </div>
-  </div>
 
   <script src="src/main.js" type="module"></script>
 
