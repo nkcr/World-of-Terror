@@ -74,19 +74,20 @@
             <section id="panel-1">
                 <div id="infoMarker">
                   <h2>Selected Marker</h2>
+                  <p><b>Attack Type</b></p>
                   <a id="info_attack_name"></a>
-                  <table id="marker_info_table">
+                  <table id="marker_info_table" width="100%">
                     <tr>
-                      <th>Date</th>
-                      <th>Success or Failure</th>
+                      <th width="50%">Date</th>
+                      <th width="50%">Success/Failure</th>
                     </tr>
                     <tr>
                       <td id="info_attack_date"></td>
                       <td id="info_attack_success"></td>
                     </tr>
                     <tr>
-                      <th>Perpetrator</th>
-                      <th>Target</th>
+                      <th width="50%">Perpetrator</th>
+                      <th width="50%">Target</th>
                     </tr>
                     <tr>
                       <td>
@@ -95,13 +96,14 @@
                     <td id="info_attack_target"></td>
                   </tr>
                   </table>
-                  <hr align="center" width="100%" color="#BDBDBD"/>
+                  <b>Summary</b>
                   <p id="info_attack_description" class="description_marker">
-
                   </p>
-              </div>
+                  <hr color="#BDBDBD">
 
-              <h2 style="text-align: center;">Attack Types</h2>
+              </div>
+              <h2>Displayed Zone</h2>
+              <h3 style="text-align: center;">Attack Types</h3>
               <div id="div-attack-types">
                 <canvas id="attack-types" height="200" width="200">
                 </canvas>
@@ -111,7 +113,7 @@
 
               <hr>
 
-              <h2 style="text-align: center;"> Terrorist Groups</h2>
+              <h3 style="text-align: center;"> Terrorist Groups</h3>
               <div id="div-terrorist-groups">
                 <canvas id="terrorist-groups"   height="200" width="200">
                 </canvas>
@@ -120,7 +122,8 @@
               </div>
 
               <hr>
-              <h2 style="text-align: center;">Targets</h2>
+
+              <h3 style="text-align: center;">Targets</h3>
               <div id="div-targets">
                 <canvas id="targets"  height="200" width="200">
                 </canvas>
@@ -133,11 +136,12 @@
             <section id="panel-2">
                 <div id="infoMarker">
                   <h2>Selected Marker</h2>
+                  <p><b>Attack Type</b></p>
                   <a id="info_attack_name_filter"></a>
                   <table id="marker_info_table">
                   <tr>
                       <th>Date</th>
-                      <th>Success or Failure</th>
+                      <th>Success/Failure</th>
                   </tr>
                   <tr>
                       <td id="info_attack_date_filter"></td>
