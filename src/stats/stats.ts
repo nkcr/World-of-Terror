@@ -305,10 +305,18 @@ export default class Stats {
             this.ctxTerrGroups.drawImage(zoomInImage,this.canvasTerrGroups.width / 2 - 100 / 2, this.canvasTerrGroups.height / 2 - 100 / 2,100,100);
             this.TerrLabel.innerHTML=errMess;
         }
-        var percentageSuccess:number=Math.round(nbSuccesses/numberOfAttacks*100);
-        var nbUnsuccessful:number=numberOfAttacks-nbSuccesses;
-        var percentageFailure:number=Math.round(nbUnsuccessful/numberOfAttacks*100);
-        this.SuccessElement.innerHTML="<p><b>Successful attacks</b>:"+nbSuccesses+"("+percentageSuccess+"%).<br><b>Unsuccessful attacks</b>:"+nbUnsuccessful+"("+percentageFailure+"%).</p>";
+        if(numberOfAttacks>0)
+        {
+            var percentageSuccess:number=Math.round(nbSuccesses/numberOfAttacks*100);
+            var nbUnsuccessful:number=numberOfAttacks-nbSuccesses;
+            var percentageFailure:number=Math.round(nbUnsuccessful/numberOfAttacks*100);
+            this.SuccessElement.innerHTML="<p><b>Successful attacks</b>:"+nbSuccesses+"("+percentageSuccess+"%).<br><b>Unsuccessful attacks</b>:"+nbUnsuccessful+"("+percentageFailure+"%).</p>";
+        }
+        else
+        {
+            this.SuccessElement.innerHTML="<p>There are no attacks in the selected zone... Move around a bit!</p>";
+
+        }
         
 
     }
