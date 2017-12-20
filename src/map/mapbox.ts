@@ -12,6 +12,7 @@ export default class Mapbox {
   info: Info;
   overlay: Overlay;
 
+  indexesInBounds: any[] = [];
 
   constructor(stats: Stats, info: Info) {
     this.markers = [];
@@ -124,8 +125,9 @@ export default class Mapbox {
 
     let markers = this.markers;
     let stats = this.stats;
+    let me = this;
     this.mapbox.on('move', function (object:any) {
-      let inBounds: any[] = []; // will contain every id of the visible attacks.
+      /*let inBounds: any[] = []; // will contain every id of the visible attacks.
 
       // Get the map bounds - the top-left and bottom-right locations.
       var bounds = map.getBounds();
@@ -135,13 +137,34 @@ export default class Mapbox {
         if (bounds.contains(marker.getLatLng())){
             inBounds.push(marker.options.title);
         }
-      });
+     });*/
+      let inBounds: any[] = me.countMarkerInBox(map, markers);
+      me.indexesInBounds = inBounds;
       stats.updateStats(inBounds);
      });
     this.mapbox.addLayer(this.markers);
     this.overlay.removeEvent(uuid);
+
+    // Update stats by taking the filters in account
+    let inBounds: any[] = me.countMarkerInBox(map, markers);
+    this.indexesInBounds = inBounds;
+    stats.updateStats(this.indexesInBounds);
   }
 
+  countMarkerInBox(map:any, markers:any){
+     let inBounds: any[] = []; // will contain every id of the visible attacks.
+
+     // Get the map bounds - the top-left and bottom-right locations.
+     var bounds = map.getBounds();
+     markers.eachLayer(function(marker:any) {
+        // For each marker, consider whether it is currently visible by comparing
+        // with the current map bounds.
+        if (bounds.contains(marker.getLatLng())){
+             inBounds.push(marker.options.title);
+        }
+     });
+     return inBounds;
+  }
 
   createPopup(db :Array<any>, i:number,  attackType:string, attack_icon_url:string, latlng:any, success:any){
      let icon_img = '<img src=' + attack_icon_url  + ' height=35 width=35/>';

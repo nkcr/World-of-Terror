@@ -4,7 +4,6 @@ import Info from "../info/info.js";
 export default class Filters {
 
   _filter_perpetrator: HTMLElement;
-  _info: Info;
   _db: any;
 
   _filter_perpetrator_initial_state:boolean = true;
