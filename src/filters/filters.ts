@@ -61,7 +61,7 @@ export default class Filters {
         if(typeof info.current_marker_id == "undefined"){
            return;
         }
-        
+
         me._filter_perpetrator_initial_state = !me._filter_perpetrator_initial_state;
         if(me._filter_perpetrator_initial_state){
            vm.filters_perpetrators = -1;
@@ -129,7 +129,7 @@ export default class Filters {
      /*******************************************************/
      /****************** update vm.filters_attackType *******/
      /*******************************************************/
-      vm.filters_attackType = [true,true,true,true,true,true,true,true,true];
+     vm.filters_attackType = [true,true,true,true,true,true,true,true,true];
   }
 
   reset_filters_graphical_elements(){

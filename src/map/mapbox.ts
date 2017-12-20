@@ -149,7 +149,7 @@ export default class Mapbox {
     this.indexesInBounds = inBounds;
     stats.updateStats(this.indexesInBounds);
 
-    // Update vue reset si reset = false
+    // Update vue reset si reset = true
     if(this.vm.reset_all){
       this.filters.reset_filters_graphical_elements();
     }
