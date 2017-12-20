@@ -5,6 +5,7 @@ export default class Filters {
 
   _filter_perpetrator: HTMLElement;
   _db: any;
+  _vm: any;
 
   _filter_perpetrator_initial_state:boolean = true;
   _filter_targets_initial_state:boolean = true;
@@ -20,6 +21,8 @@ export default class Filters {
 
 
   constructor(vm:any, db:any, info: Info) {
+     this._db = db;
+     this._vm = vm;
      /**********************************************************************/
      /********************** Filter by Success  ***********************/
      /**********************************************************************/
@@ -82,6 +85,14 @@ export default class Filters {
      }
 
      /**********************************************************************/
+     /******************** Reset attack types handler **********************/
+     /**********************************************************************/
+     var reset_attack_type_btn = document.getElementById("reset_attack_type_btn");
+     reset_attack_type_btn.onclick = function() {
+        me.reset_attack_types_filters(vm);
+     }
+
+     /**********************************************************************/
      /********************** Reset Filters handler *************************/
      /**********************************************************************/
      var reset_filters = document.getElementById("reset_filters");
@@ -97,6 +108,22 @@ export default class Filters {
 
   }
 
+  reset_attack_types_filters(vm:any){
+     /*******************************************************/
+     /******************** reset GUI elements ***************/
+     /*******************************************************/
+     var attackTypeCheckboxList = document.getElementsByName("attackTypeCheckbox");
+     for(var i = 0; i < attackTypeCheckboxList.length; i++) {
+      let checkbox:HTMLInputElement = <HTMLInputElement>(attackTypeCheckboxList[i]);
+      checkbox.checked = true;
+     }
+
+     /*******************************************************/
+     /****************** update vm.filters_attackType *******/
+     /*******************************************************/
+      vm.filters_attackType = [true,true,true,true,true,true,true,true,true];
+  }
+
   reset_filters_graphical_elements(){
      var success_unsuccess_radio_id:HTMLInputElement = <HTMLInputElement>(document.getElementById("success_unsuccess_radio_id"));
      success_unsuccess_radio_id.checked = true;
@@ -104,6 +131,12 @@ export default class Filters {
      success_radio_id.checked = false;
      var unsuccess_radio_id:HTMLInputElement = <HTMLInputElement>(document.getElementById("unsuccess_radio_id"));
      unsuccess_radio_id.checked = false;
+
+    var attackTypeCheckboxList = document.getElementsByName("attackTypeCheckbox");
+    for(var i = 0; i < attackTypeCheckboxList.length; i++) {
+      let checkbox:HTMLInputElement = <HTMLInputElement>(attackTypeCheckboxList[i]);
+      checkbox.checked = true;
+    }
 
      this.filter_targets_href.innerHTML = this.FILTER_TARGETS_INITIAL_STATE;
      this._filter_targets_initial_state = true;
