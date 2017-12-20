@@ -40,7 +40,7 @@ class Main {
 
     // Init map
     var uuid4 = overlay.addEvent("Init map...");
-    let map = new Mapbox(stats, info);
+    let map = new Mapbox(stats, info, vue.getVm());
     const mapPromise = new Promise((resolve: any, reject: any) => {
       map.initMap(resolve, reject, vue.getVm().db, overlay);
     });
@@ -65,6 +65,7 @@ class Main {
       stats.initStats(vue.getVm().db);
       info.initInfo(vue.getVm().db);
       let filters = new Filters(vue.getVm(), vue.getVm().db, info);
+      map.setFilters(filters);
    });
 
    // Init panels

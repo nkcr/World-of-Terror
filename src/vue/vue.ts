@@ -35,6 +35,7 @@ export default class {
         filters_attackType: [true,true,true,true,true,true,true,true,true],
         filters_perpetrators: -1,
         filters_targets: -1,
+        reset_all: false,
       },
       methods: {
         collection: function ():any {
@@ -43,7 +44,10 @@ export default class {
           } else {
             return "null";
           }
-        }
+       },
+       getVue: function():any {
+          return me;
+       }
       },
       watch: {
         dstart: function () {
@@ -53,16 +57,24 @@ export default class {
           me.mapUpdate();
         },
         filters_success: function () {
-          me.mapUpdate();
+          if(!me._vm.reset_all){
+            me.mapUpdate();
+          }
         },
         filters_attackType: function () {
-          me.mapUpdate();
+          if(!me._vm.reset_all){
+            me.mapUpdate();
+          }
         },
         filters_perpetrators: function () {
-          me.mapUpdate();
+          if(!me._vm.reset_all){
+            me.mapUpdate();
+          }
         },
         filters_targets: function () {
-          me.mapUpdate();
+          if(!me._vm.reset_all){
+            me.mapUpdate();
+          }
         }
       }
     });

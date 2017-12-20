@@ -20,11 +20,19 @@ body, html {
       margin-top: 5px;
    }
 
-button#reset {
+button#reset_view {
   position: absolute;
   z-index: 1;
   top: 10px;
   left: 50px;
+}
+
+
+button#reset_filters {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 150px;
 }
 
   body {
