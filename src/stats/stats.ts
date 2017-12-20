@@ -9,9 +9,8 @@ var errMess: string = "<p style=\"text-align:center;\">Too many labels to displa
 var zoomInImage : HTMLImageElement;
 
 export default class Stats {
-    //Type = 29 ,Target = 35, Group = 58
-
-
+    //Data organization in db file : 
+    //Type = 29 ,Target = 35, Group = 58, success = 26
     partialOpts: PieChartOptions = {
     segmentShowStroke: true,
     segmentStrokeColor: "#fff",
@@ -28,6 +27,7 @@ export default class Stats {
     pieChartTarg:Chart;
     pieTarg:CircularInstance;
     TargetsLabel:HTMLElement;
+    SuccessElement:HTMLElement;
 
     canvasTerrGroups:any;
     ctxTerrGroups:any;
@@ -63,10 +63,12 @@ export default class Stats {
             //console.log("is init!");
             //console.log(this.db);
         }
+        var numberOfAttacks=attacks.length;
 
         var filteredTargets=[];
         var filteredTerrGroups=[];
         var filteredAttackTypes=[];
+        var filteredSuccess:number[]=[];
 
         var targetLabels=[];
         var terrGroupLabels=[];
@@ -76,11 +78,29 @@ export default class Stats {
         var j=0;
         for(var i=0;i<attacks.length;i++)
         {
+            // Retrieving list of targets from DB
             filteredTargets[j]=this.db[attacks[i]][35];
+            
+            // Retrieving list of terrorist groups from DB
             filteredTerrGroups[j]=this.db[attacks[i]][58];
+            
+            // Retrieving list of types of attacks from DB
             filteredAttackTypes[j]=this.db[attacks[i]][29];
+            
+            // Retrieving Success/Failure of attacks from DB
+            filteredSuccess[j]=this.db[attacks[i]][26];
             j++;
         }
+
+        var nbSuccesses:number=0;
+        for(var i=0;i<numberOfAttacks;i++)
+        {
+            if(filteredSuccess[i]==1)
+            {
+                nbSuccesses+=1;
+            }
+        }
+        
         //retrieve labels for targets
         for(var i=0;i<filteredTargets.length;i++)
         {
@@ -285,7 +305,10 @@ export default class Stats {
             this.ctxTerrGroups.drawImage(zoomInImage,this.canvasTerrGroups.width / 2 - 100 / 2, this.canvasTerrGroups.height / 2 - 100 / 2,100,100);
             this.TerrLabel.innerHTML=errMess;
         }
-
+        var percentageSuccess:number=Math.round(nbSuccesses/numberOfAttacks*100);
+        var nbUnsuccessful:number=numberOfAttacks-nbSuccesses;
+        var percentageFailure:number=Math.round(nbUnsuccessful/numberOfAttacks*100);
+        this.SuccessElement.innerHTML="<p><b>Successful attacks</b>:"+nbSuccesses+"("+percentageSuccess+"%).<br><b>Unsuccessful attacks</b>:"+nbUnsuccessful+"("+percentageFailure+"%).</p>";
         
 
     }
@@ -311,6 +334,7 @@ export default class Stats {
         this.TargetsLabel=document.getElementById("targets_legend");
         this.TerrLabel=document.getElementById("terrorist_legend");
         this.attacksLabel = document.getElementById("attack_legend");
+        this.SuccessElement = document.getElementById("success_failure");
         }
 
 }
