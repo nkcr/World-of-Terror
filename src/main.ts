@@ -60,11 +60,11 @@ class Main {
       overlay.removeEvent(uuid1);
       console.log("Everything loaded");
       vue.setMap(map);
-      map.mapUpdate(vue.getVm().dstart, vue.getVm().dend, vue.getVm().db, vue.getVm().filters_success, vue.getVm().filters_attackType, vue.getVm().filters_perpetrators);
+      map.mapUpdate(vue.getVm().dstart, vue.getVm().dend, vue.getVm().db, vue.getVm().filters_success,
+                                        vue.getVm().filters_attackType, vue.getVm().filters_perpetrators, vue.getVm().filters_targets);
       stats.initStats(vue.getVm().db);
       info.initInfo(vue.getVm().db);
       let filters = new Filters(vue.getVm(), vue.getVm().db, info);
-      info.setFilter(filters);
    });
 
    // Init panels

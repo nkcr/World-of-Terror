@@ -20,7 +20,8 @@ export default class {
   }
 
   mapUpdate() {
-    this._map.mapUpdate(this._vm.dstart, this._vm.dend, this._vm.db, this._vm.filters_success, this._vm.filters_attackType, this._vm.filters_perpetrators);
+    this._map.mapUpdate(this._vm.dstart, this._vm.dend, this._vm.db, this._vm.filters_success,
+                        this._vm.filters_attackType, this._vm.filters_perpetrators, this._vm.filters_targets);
   }
 
   initVue(dom_el: string, resolve: any, reject: any) {
@@ -33,6 +34,7 @@ export default class {
         filters_success: "success_unsuccess_radio_id",
         filters_attackType: [true,true,true,true,true,true,true,true,true],
         filters_perpetrators: -1,
+        filters_targets: -1,
       },
       methods: {
         collection: function ():any {
@@ -59,6 +61,9 @@ export default class {
         filters_perpetrators: function () {
           me.mapUpdate();
         },
+        filters_targets: function () {
+          me.mapUpdate();
+        }
       }
     });
     resolve("OK init Vue");

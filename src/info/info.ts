@@ -1,5 +1,3 @@
-import Filters from "../filters/filters.js";
-
 export default class Info {
 
 
@@ -19,7 +17,6 @@ export default class Info {
 
      current_marker_id:number;
 
-     filter: Filters;
 
      db:any;
 
@@ -44,19 +41,8 @@ export default class Info {
         this.info_attack_description_filter=document.getElementById("info_attack_description_filter");
      }
 
-     setFilter(filter:Filters){
-        this.filter = filter;
-     }
-
      updateInfo(i:number){
         this.current_marker_id = i;
-
-        /***********************************************************/
-        /****************** Update Filters *************************/
-        /*this.filter._filter_perpetrator_initial_state = true;
-        this.filter.filter_perpetrator_href.innerHTML = this.filter.FILTER_PERPETRATOR_INITIAL_STATE;*/
-        /***********************************************************/
-
 
         let attackType = this.db[i][29];
         let success = this.db[i][26];

@@ -39,7 +39,8 @@ export default class Mapbox {
     });
   }
 
-  mapUpdate(dstart :number, dend :number, db :Array<any>, filters_success:string, filters_attackType:Array<number>, filters_perpetrators:number) {
+  mapUpdate(dstart :number, dend :number, db :Array<any>, filters_success:string, filters_attackType:Array<number>,
+                                                          filters_perpetrators:number, filters_targets:number) {
      const uuid = this.overlay.addEvent("Updating map...");
      if (this.markers) {
         this.mapbox.removeLayer(this.markers);
@@ -53,12 +54,16 @@ export default class Mapbox {
      if(filters_perpetrators != -1){
        gname_filter = db[filters_perpetrators][58];
      }
+     let target_filter:string = "";
+     if(filters_targets != -1){
+       target_filter = db[filters_targets][35];
+     }
      for (var i = 0; i < db.length; i++) {
         if (db[i][1] >= dstart && db[i][1] <= dend) {
            var success = db[i][26];
 
            /**********************************************************************/
-           /************************ Filter for Success  *************************/
+           /************************ Filter by Success  *************************/
            /**********************************************************************/
            if(filters_success == "success_radio_id" && success != 1){
              continue;
@@ -68,19 +73,26 @@ export default class Mapbox {
            }
 
            /**********************************************************************/
-           /********************** Filter for Attack Type  ***********************/
+           /********************** Filter by Attack Type  ***********************/
            /**********************************************************************/
            let attackTypeId:number = Number(db[i][28]);
            if(!filters_attackType[attackTypeId-1]){
              continue;
            }
-           /**********************************************************************/
 
            /**********************************************************************/
-           /********************** Filter for Attack Type  ***********************/
+           /********************** Filter by Perpetrator  ***********************/
            /**********************************************************************/
            var gname:string = String(db[i][58]);
            if(filters_perpetrators != -1 && gname != gname_filter){
+             continue;
+           }
+
+           /**********************************************************************/
+           /************************ Filter by Target ****************************/
+           /**********************************************************************/
+           var target:string = String(db[i][35]);
+           if(filters_targets != -1 && target != target_filter){
              continue;
            }
            /**********************************************************************/

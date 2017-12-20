@@ -8,15 +8,22 @@ export default class Filters {
   _db: any;
 
   _filter_perpetrator_initial_state:boolean = true;
+  _filter_targets_initial_state:boolean = true;
 
   FILTER_PERPETRATOR_INITIAL_STATE:string = "Display only attacks triggered by this perpetrator";
   FILTER_PERPETRATOR_CLICKED_STATE:string = "Display all attacks";
 
+  FILTER_TARGETS_INITIAL_STATE:string = "Display only attacks for this target type";
+  FILTER_TARGETS_CLICKED_STATE:string = "Display all attacks";
+
   filter_perpetrator_href:any;
+  filter_targets_href:any;
 
 
   constructor(vm:any, db:any, info: Info) {
-
+     /**********************************************************************/
+     /********************** Filter by Success  ***********************/
+     /**********************************************************************/
      // Succes or unsuccess filter manager
      var sucRadio = document.getElementsByName("successRadio");
      var prev:any = null;
@@ -29,6 +36,9 @@ export default class Filters {
          };
      }
 
+     /**********************************************************************/
+     /********************** Filter by Attack Type  ***********************/
+     /**********************************************************************/
      var attackTypeCheckboxList = document.getElementsByName("attackTypeCheckbox");
      for(var i = 0; i < attackTypeCheckboxList.length; i++) {
         attackTypeCheckboxList[i].onclick = function() {
@@ -44,8 +54,10 @@ export default class Filters {
         };
      }
 
+     /**********************************************************************/
+     /********************** Filter by Perpetrator *************************/
+     /**********************************************************************/
      this.filter_perpetrator_href = document.getElementById("filter_perpetrator");
-     var prev_clicked:boolean = false;
      var me = this;
      this.filter_perpetrator_href.onclick = function() {
         me._filter_perpetrator_initial_state = !me._filter_perpetrator_initial_state;
@@ -57,19 +69,23 @@ export default class Filters {
            this.innerHTML = me.FILTER_PERPETRATOR_CLICKED_STATE;
         }
      }
-     // Attack Type filter manager
-     /*var attackTypeCheckbox =  document.getElementById("attacktypeFilterList");
-     var meFilter = this;
-     attackTypeList.onchange = function() {
-        var select:HTMLSelectElement = <HTMLSelectElement>(this);
-        let attackTypeList:number[]  = [];
-        for(var i = 0; i < select.selectedOptions.length; i++){
-           var option = select.selectedOptions[i];
-           attackTypeList.push(Number(option.value));
-        }
 
-        console.log(attackTypeList);
-     }*/
+     /**********************************************************************/
+     /************************ Filter by Target ****************************/
+     /**********************************************************************/
+     this.filter_targets_href = document.getElementById("filter_targets");
+     var me = this;
+     this.filter_targets_href.onclick = function() {
+        me._filter_targets_initial_state = !me._filter_targets_initial_state;
+        if(me._filter_targets_initial_state){
+           vm.filters_targets = -1;
+           this.innerHTML = me.FILTER_TARGETS_INITIAL_STATE;
+        }else{
+           vm.filters_targets = info.current_marker_id;
+           this.innerHTML = me.FILTER_PERPETRATOR_CLICKED_STATE;
+        }
+     }
+
   }
 
 }
