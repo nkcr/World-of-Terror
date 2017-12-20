@@ -8,13 +8,15 @@ export default class Panels {
     this._panel_buttons = [
       document.getElementById("btn-panel-1"),
       document.getElementById("btn-panel-2"),
-      document.getElementById("btn-panel-3")
+      document.getElementById("btn-panel-3"),
+      document.getElementById("btn-panel-4")
     ];
 
     this._panels = [
       document.getElementById("panel-1"),
       document.getElementById("panel-2"),
-      document.getElementById("panel-3")
+      document.getElementById("panel-3"),
+      document.getElementById("panel-4")
     ];
 
     for (var i = 0; i < this._panel_buttons.length; i++) {

@@ -20,4 +20,16 @@ export default class Parser {
     });
   }
 
+  exportData(data: any, indexedInBounds: any[]) {
+    console.log("Starting export");
+    console.log("data", data);
+    let csvContent = "data:text/csv;charset=utf-8,";
+    indexedInBounds.forEach(function(i:any){
+      let row = data[i].join(",");
+      csvContent += row + "\r\n"; // add carriage return
+    }); 
+    var encodedUri = encodeURI(csvContent);
+    window.open(encodedUri);
+  }
+
 }
