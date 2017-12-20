@@ -39,7 +39,7 @@ export default class Mapbox {
     });
   }
 
-  mapUpdate(dstart :number, dend :number, db :Array<any>, filters_success:string, filters_perpetrators:Array<number>) {
+  mapUpdate(dstart :number, dend :number, db :Array<any>, filters_success:string, filters_attackType:Array<number>, filters_perpetrators:number) {
      const uuid = this.overlay.addEvent("Updating map...");
      if (this.markers) {
         this.mapbox.removeLayer(this.markers);
@@ -49,6 +49,10 @@ export default class Mapbox {
      });
      let info = this.info;
      let map = this.mapbox;
+     let gname_filter:string = "";
+     if(filters_perpetrators != -1){
+       gname_filter = db[filters_perpetrators][58];
+     }
      for (var i = 0; i < db.length; i++) {
         if (db[i][1] >= dstart && db[i][1] <= dend) {
            var success = db[i][26];
@@ -67,7 +71,16 @@ export default class Mapbox {
            /********************** Filter for Attack Type  ***********************/
            /**********************************************************************/
            let attackTypeId:number = Number(db[i][28]);
-           if(!filters_perpetrators[attackTypeId-1]){
+           if(!filters_attackType[attackTypeId-1]){
+             continue;
+           }
+           /**********************************************************************/
+
+           /**********************************************************************/
+           /********************** Filter for Attack Type  ***********************/
+           /**********************************************************************/
+           var gname:string = String(db[i][58]);
+           if(filters_perpetrators != -1 && gname != gname_filter){
              continue;
            }
            /**********************************************************************/
@@ -92,7 +105,7 @@ export default class Mapbox {
            marker.on('click', function (e:any) {
              map.setView(e.target.getLatLng(),map.getZoom());
              info.updateInfo(db_i);
-          });
+           });
            this.markers.addLayer(marker);
         }
     }
@@ -122,24 +135,6 @@ export default class Mapbox {
      let icon_img = '<img src=' + attack_icon_url  + ' height=35 width=35/>';
      let dateOfAttack:string = db[i][1] + '/' + db[i][2] + '/' + db[i][3];
      let content =   '<h2>' + icon_img + ' ' + attackType + " <br/> <center>" + dateOfAttack + '</center></h2>';
-     /*
-     let summary:string = db[i][18];
-     if(!summary){
-       summary = 'Sorry, no summary is available.';
-     }
-     let success_url =  "assets/images/success/" + success + ".png";
-     let dateOfAttack:string = db[i][1] + '/' + db[i][2] + '/' + db[i][3];
-     let gname:string = db[i][58];
-     let targetType:string = db[i][35];
-     let icon_img = '<img src=' + attack_icon_url  + ' height=35 width=35/>';
-     let success_img = '<img src=' + success_url +  ' height=25 width=25/>';
-     let content =   '<h2>' + icon_img + ' ' + attackType + '</h2>' +
-                     '<table align=center>' +
-                     '<tr><td align=center>' + dateOfAttack +'</td><td align=center>' + '<strong>Success </strong>' + success_img +'</td></tr>'+
-                     '<tr><td align=center>' + '<strong>Perpetrator</strong><br>' + gname +'</td><td align=center>' + '<strong>Target</strong><br>' + targetType +'</td></tr>'+
-                     '</table>' +
-                     '<hr>' +
-                     '<p>' + summary  + '</p>';*/
      let popup = L.popup()
           .setLatLng(latlng)
           .setContent(content);

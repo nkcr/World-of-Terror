@@ -20,7 +20,7 @@ export default class {
   }
 
   mapUpdate() {
-    this._map.mapUpdate(this._vm.dstart, this._vm.dend, this._vm.db, this._vm.filters_success, this._vm.filters_perpetrators);
+    this._map.mapUpdate(this._vm.dstart, this._vm.dend, this._vm.db, this._vm.filters_success, this._vm.filters_attackType, this._vm.filters_perpetrators);
   }
 
   initVue(dom_el: string, resolve: any, reject: any) {
@@ -31,7 +31,8 @@ export default class {
         dstart: 1970,
         dend: 2020,
         filters_success: "success_unsuccess_radio_id",
-        filters_perpetrators: [true,true,true,true,true,true,true,true,true],
+        filters_attackType: [true,true,true,true,true,true,true,true,true],
+        filters_perpetrators: -1,
       },
       methods: {
         collection: function ():any {
@@ -50,6 +51,9 @@ export default class {
           me.mapUpdate();
         },
         filters_success: function () {
+          me.mapUpdate();
+        },
+        filters_attackType: function () {
           me.mapUpdate();
         },
         filters_perpetrators: function () {
