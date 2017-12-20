@@ -26,7 +26,7 @@ export default class Mapbox {
 
     var reset = document.getElementById("reset");
     reset.onclick = function() {
-      me.mapbox.setView([-10, 1.757813], 1);
+      me.mapbox.setView([-10, 1.757813], 2);
     }
 
     console.log('------------initMap------------');
@@ -34,7 +34,7 @@ export default class Mapbox {
     // Create a map in the div #map
     this.mapbox = L.mapbox.map('mapbox', 'mapbox.streets');
     this.mapbox.on('load', function () {
-      me.mapbox.setView([-10, 1.757813], 1);
+      me.mapbox.setView([-10, 1.757813], 2);
       L.mapbox.styleLayer("mapbox://styles/nkcr/citu52wjb001y2irqtlt8ki9e").addTo(me.mapbox);
       resolve("OK");
     });

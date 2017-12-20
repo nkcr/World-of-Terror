@@ -1,6 +1,6 @@
 body, html {
-    position: relative;
-    min-height: 100%;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
   }
 
@@ -64,63 +64,68 @@ button#reset {
     }
 
 
-    #app {
-      height: 100%;
-      position: absolute;
-      left: 0px;
-      right: 0;
-      bottom: 0;
-      top: 0;
-    }
+#app {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  flex-wrap: wrap;
+}
 
-  .tools {
+  #app .tools {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    width:70%;
-    height: 140px;
-    background-color: rgba(0, 0, 0, .5);
-
-    padding: 60px 30px 50px 30px;
-    z-index: 10;
+    background-color: rgba(0, 0, 0, .6);
+    padding: 60px 30px 65px 30px;
+    z-index: 99999999;
     color: #fff;
   }
 
-  #mapbox {
-      position:absolute;
-      top:0px;
-      bottom:0;
-      width:70%;
-      left:0px;
- }
-
-  #info {
-      position:absolute;
-      padding-right: 1em;
-      top:0px;
-      bottom:0;
-      width:28%;
-      margin: 1em 72%;
-      overflow-y: scroll;
+  div.noUi-value.noUi-value-horizontal.noUi-value-large {
+    color: #fff;
   }
+
+  #app .mapbox-wrapper {
+    flex: 3;
+    min-height: 100vh;
+    position: relative;
+  }
+
+    #app .mapbox-wrapper #mapbox {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+  #app #info {
+      flex: 1;
+      min-width: 500px;
+      position: relative;
+  }
+
+    #app #info h1 {
+      padding: 5px 0 5px 15px;
+    }
 
 
   @media screen and (max-width: 768px) {
-   #mapbox {
-    height:50%;
-    width:100%;
-  }
-  #info {
-    padding-top: 1em;
-    margin: 5%;
-    top: 55%;
-    height: 50%;
-    width: 95%;
+    body, html {
+      overflow: scroll !important;
+    }
+
+    #app {
+      flex-direction: column !important;
+    }
+
+    div.panels > div.panels-wrapper {
+      position: initial !important;
+    }
+
   }
 
-
-}
 #div-attack-types,#div-terrorist-groups,#div-targets{
     display:flex;
     flex-direction: row;
