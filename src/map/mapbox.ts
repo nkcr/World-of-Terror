@@ -36,7 +36,7 @@ export default class Mapbox {
 
     var reset_view = document.getElementById("reset_view");
     reset_view.onclick = function() {
-      me.mapbox.setView([-10, 1.757813], 1);
+      me.mapbox.setView([-10, 1.757813], 2);
     }
 
     console.log('------------initMap------------');
@@ -167,6 +167,7 @@ export default class Mapbox {
              inBounds.push(marker.options.title);
         }
      });
+     this.vm.total_displayed = inBounds.length;
      return inBounds;
   }
 

@@ -27,13 +27,35 @@ button#reset_view {
   left: 50px;
 }
 
-
 button#reset_filters {
   position: absolute;
   z-index: 1;
   top: 10px;
   left: 150px;
 }
+
+div.n-elem {
+  position: absolute;
+  z-index: 1;
+  top: 11px;
+  left: 258px;
+  height: 27px;
+  font-size: 8px;
+  text-align: center;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 0 0 5px;
+}
+  div.n-elem p {
+    padding: 0;
+    margin: 0;
+  }
+  div.n-elem span {
+    font-size: 14px;
+    padding: 0 5px 0 10px;
+  }
 
   body {
     min-height: 100vh;
