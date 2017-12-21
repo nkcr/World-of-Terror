@@ -69,6 +69,9 @@ export default class Mapbox {
      if(filters_targets != -1){
        target_filter = db[filters_targets][35];
      }
+
+     let count = 0;
+
      for (var i = 0; i < db.length; i++) {
         if (db[i][1] >= dstart && db[i][1] <= dend) {
            var success = db[i][26];
@@ -129,8 +132,10 @@ export default class Mapbox {
              map.setView(e.target.getLatLng(),map.getZoom());
              info.updateInfo(db_i);
            });
+           count = count + 1;
            this.markers.addLayer(marker);
         }
+        this.vm.total_map = count;
     }
 
     let markers = this.markers;

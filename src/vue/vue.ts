@@ -36,7 +36,8 @@ export default class {
         filters_perpetrators: -1,
         filters_targets: -1,
         reset_all: false,
-        total_displayed: 0
+        total_displayed: 0,
+        total_map: 0
       },
       methods: {
         collection: function ():any {
