@@ -28,7 +28,7 @@ From the root folder...
 python3 -m http.server
 ```
 
-...then fo to *localhost:8000*
+...then go to *localhost:8000*
 
 ### Run with any webserver (option 3)
 
