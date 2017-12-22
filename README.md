@@ -37,3 +37,7 @@ You can use any webserver to serve the website. Use the root project folder as t
 ## In case you want to compile
 
 Code is written in Typescript `2.6.2`. To compile the code, run `tsc` from the root folder.
+
+## Documentation
+
+See `doc`folder.
