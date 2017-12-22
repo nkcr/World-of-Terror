@@ -22,6 +22,8 @@ docker run --name some-nginx -v /PATH/TO/PROJECT:/usr/share/nginx/html:ro -p8000
 
 ### Run with python (option 2)
 
+From the root folder...
+
 ```
 python3 -m http.server
 ```
