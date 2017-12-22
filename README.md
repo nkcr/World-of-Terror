@@ -2,7 +2,7 @@
 
 ### Set up database
 
-Move `db.csv` (from the root folder) to `assets/data`. 
+Move `dist/db.csv` (from the root folder) to `assets/data`. 
 
 *Note*: The provided database has been reduced due to its size. It contains only 10'000 records, taken uniformly from the original database.
 
