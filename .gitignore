@@ -1,4 +1,3 @@
-db.csv
 *.swp
 src/**/*.js
 src/*.js
