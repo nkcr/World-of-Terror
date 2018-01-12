@@ -1,9 +1,4 @@
 *.swp
-src/**/*.js
-src/*.js
-src/*.map
-src/**/*.map
-assets/data/*
 
 node_modules/
 built/*
